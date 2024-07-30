@@ -1,7 +1,13 @@
-<div class="col-lg-6 mx-5 mt-3">
-    <h1 class="text-center">{{title}}</h1>
+<div class="col-lg-6 mx-5 mt-5">
+    <h1 class="text-center my-5">{{title}}</h1>
+    <div class="alert alert-success" *ngIf="status=='success'">
+        Registro Completado correctamente, <a [routerLink]="['/login']">loggin</a>
+    </div>
+    <div class="alert alert-danger" *ngIf="status=='error'">
+        El registro no se ha podido Guardar {{msg}}
+    </div>
 
-    <form #registerForm="ngForm" class="col-lg-10">
+    <form #registerForm="ngForm"  (ngSubmit)="onSubmit(registerForm)" class="col-lg-10">
         <p>
             <label for="">Nombre</label>
             <input type="text" name="name" #name="ngModel"[(ngModel)]="user.name" class="form-control" required>
