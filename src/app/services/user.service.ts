@@ -21,18 +21,12 @@ export class UserService{
         return this._http.post(this.url+'/user',params, {headers})
     }
 
-    singup(user:User,token=false): Observable<any>{
+    singup(user:User): Observable<any>{
         
-
-        //esto al parecer no funcion apara nada y habria que quitarlo, hayq ue ver hasta donde lo deja el vistor
-        if(token){
-            user = Object.assign(user, {token});
-            console.log(user)
-        }
-
         let params = JSON.stringify(user)
         let headers = new HttpHeaders().set('Content-Type','application/json')
         return this._http.post(this.url+'/login',params, {headers})
+
     }
 
     getDataUSer(){
@@ -40,5 +34,17 @@ export class UserService{
         if(data){
             return this.token = data
         }
+    }
+
+    getCounter(): Observable<any>{
+        let data = JSON.parse(localStorage.getItem('data') ?? '{}')
+        let headers = new HttpHeaders().set('Content-Type','application/json')
+                                        .set('x-token',data.token)
+        return this._http.get(this.url+'/follow/followsCount', {headers})
+    }
+
+    getStats(){
+        let stats = JSON.parse(localStorage.getItem('stats') ?? '{}')
+        //hayq ue ver que devuel stats con usuario que no tengan publicaciones o seguidores
     }
 }

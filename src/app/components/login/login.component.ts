@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
                 //Persistir datos del usuario
                 localStorage.setItem('data',JSON.stringify(response.data))
 
-                this._router.navigate(['/'])//Cuando el usuario se logue lo redireccionamos al home
+                this.getCounters()
             },
             error: (error) => {
                 this.status = error.error.status
@@ -46,4 +46,24 @@ export class LoginComponent implements OnInit {
             }
         })
     }
+
+    //Controlador para obtener los contadores del usuario
+    getCounters(){
+
+        this._userService.getCounter().subscribe({
+            next: (response) => {
+                //Persistir datos del usuario
+                localStorage.setItem('stats',JSON.stringify(response.data[0]))
+                this._router.navigate(['/'])//Cuando el usuario se logue lo redireccionamos al home
+            },
+            error: (error) => {
+                console.log(error)
+                this._router.navigate(['/'])//Cuando el usuario se logue lo redireccionamos al home
+            },
+            complete: () => {
+                console.log('Request completed');
+            }
+        })
+    }
+
 }
