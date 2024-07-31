@@ -34,6 +34,8 @@ export class LoginComponent implements OnInit {
 
                 //Persistir datos del usuario
                 localStorage.setItem('data',JSON.stringify(response.data))
+
+                this._router.navigate(['/'])//Cuando el usuario se logue lo redireccionamos al home
             },
             error: (error) => {
                 this.status = error.error.status

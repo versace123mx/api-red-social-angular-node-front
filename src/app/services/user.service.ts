@@ -22,6 +22,9 @@ export class UserService{
     }
 
     singup(user:User,token=false): Observable<any>{
+        
+
+        //esto al parecer no funcion apara nada y habria que quitarlo, hayq ue ver hasta donde lo deja el vistor
         if(token){
             user = Object.assign(user, {token});
             console.log(user)
