@@ -7,9 +7,11 @@ import { GLOBAL } from "./global";
 @Injectable()
 export class UserService{
     public url:string;
+    public token:string
 
     constructor(public _http:HttpClient){
         this.url = GLOBAL.url
+        this.token = ''
     }
 
     register(user:User): Observable<any>{
@@ -17,5 +19,23 @@ export class UserService{
         let headers = new HttpHeaders().set('Content-Type','application/json')
 
         return this._http.post(this.url+'/user',params, {headers})
+    }
+
+    singup(user:User,token=false): Observable<any>{
+        if(token){
+            user = Object.assign(user, {token});
+            console.log(user)
+        }
+
+        let params = JSON.stringify(user)
+        let headers = new HttpHeaders().set('Content-Type','application/json')
+        return this._http.post(this.url+'/login',params, {headers})
+    }
+
+    getDataUSer(){
+        let data = JSON.parse(localStorage.getItem('data') ?? '{}')
+        if(data){
+            return this.token = data
+        }
     }
 }

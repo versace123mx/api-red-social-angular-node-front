@@ -11,31 +11,31 @@
         <p>
             <label for="">Nombre</label>
             <input type="text" name="name" #name="ngModel"[(ngModel)]="user.name" class="form-control" required>
-            <span *ngIf="!name.valid && name.touched">El nombre es obligatorio</span>
+            <span *ngIf="!name.valid && name.touched" class="btn btn-outline-danger">El nombre es obligatorio</span>
         </p>
 
         <p>
             <label for="">Apellidos</label>
             <input type="text" name="surname" #surname="ngModel"[(ngModel)]="user.surname" class="form-control" required>
-            <span *ngIf="!surname.valid && surname.touched">El Apellidos es obligatorio</span>
+            <span *ngIf="!surname.valid && surname.touched" class="btn btn-outline-danger">El Apellidos es obligatorio</span>
         </p>
 
         <p>
             <label for="">Nick</label>
             <input type="text" name="nick" #nick="ngModel"[(ngModel)]="user.nick" class="form-control" required>
-            <span *ngIf="!nick.valid && nick.touched">El Nick es obligatorio</span>
+            <span *ngIf="!nick.valid && nick.touched" class="btn btn-outline-danger">El Nick es obligatorio</span>
         </p>
 
         <p>
             <label for="">Correo Electronico</label>
             <input type="email" name="email" #email="ngModel"[(ngModel)]="user.email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
-            <span *ngIf="!email.valid && email.touched">El email es obligatorio</span>
+            <span *ngIf="!email.valid && email.touched" class="btn btn-outline-danger">El email es obligatorio</span>
         </p>
 
         <p>
             <label for="">Password</label>
             <input type="password" name="password" #password="ngModel"[(ngModel)]="user.password" class="form-control" required>
-            <span *ngIf="!password.valid && password.touched">El Password es obligatorio</span>
+            <span *ngIf="!password.valid && password.touched" class="btn btn-outline-danger">El Password es obligatorio</span>
         </p>
 
         <input type="submit" value="{{title}}" class="btn btn-success" [disabled]="!registerForm.form.valid">
