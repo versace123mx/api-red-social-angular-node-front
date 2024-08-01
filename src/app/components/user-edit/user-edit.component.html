@@ -1,5 +1,33 @@
-<div class="container text-center my-5 bg-light text-dark">
-    <div class="row">
+<div class="container my-5 bg-light text-dark">
+    <div class="row text-center">
         <h1 class="h1-strong">{{title}}</h1>
+
+        <div class="alert alert-success" *ngIf="status=='success'">
+            Se han actualizado los datos de forma correcta.
+        </div>
+        <div class="alert alert-danger" *ngIf="status=='error'">
+            {{msg}}
+        </div>
+    </div>
+    <div class="row">
+        <form #userEditForm="ngForm"  (ngSubmit)="onSubmit(userEditForm)" class="col-lg-10">
+            <p>
+                <label for="">Nombre</label>
+                <input type="text" name="name" #name="ngModel"[(ngModel)]="user.name" class="form-control" required>
+                <span *ngIf="!name.valid && name.touched" class="btn btn-outline-danger">El nombre es obligatorio</span>
+            </p>
+    
+            <p>
+                <label for="">Apellidos</label>
+                <input type="text" name="surname" #surname="ngModel"[(ngModel)]="user.surname" class="form-control" required>
+                <span *ngIf="!surname.valid && surname.touched" class="btn btn-outline-danger">El Apellidos es obligatorio</span>
+            </p>
+    
+            <p>
+                <label for="">Bio</label>
+                <input type="text" name="bio" #bio="ngModel"[(ngModel)]="user.bio" class="form-control">
+            </p>
+            <input type="submit" value="{{title}}" class="btn btn-success" [disabled]="!userEditForm.form.valid">
+        </form>
     </div>
 </div>
