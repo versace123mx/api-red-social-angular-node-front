@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
                 this.msg = error.error.msg
             },
             complete: () => {
-                console.log('Request completed');
+                console.log('Request completed - Login');
             }
         })
     }
@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
                 this._router.navigate(['/'])//Cuando el usuario se logue lo redireccionamos al home
             },
             complete: () => {
-                console.log('Request completed');
+                console.log('Request completed - Counter followers');
             }
         })
     }

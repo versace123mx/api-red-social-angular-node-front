@@ -52,9 +52,6 @@ export class UserEditComponent implements OnInit{
                 datosUser.name = response.data.name
                 datosUser.surname = response.data.surname
 
-                //volvemos a actualiza el localstorga
-                localStorage.setItem('data',JSON.stringify(datosUser))
-
                 this.msg = response.msg
                 this.status = response.status
                 //userEditForm.reset()
@@ -62,7 +59,10 @@ export class UserEditComponent implements OnInit{
                 //Dice el victor que aqui tendria que ir la carga de la imagen
                 this._uploadService.makeFileRequest(this.url+'/update-image',this.filesToUpload,datosUser.token,'archivo')
                 .then((result:any) => {
-                    console.log(result)
+                    datosUser.imagen = result.data
+
+                    //volvemos a actualiza el localstorga
+                    localStorage.setItem('data',JSON.stringify(datosUser))
                 })
             },
             error: (error) => {
@@ -79,7 +79,7 @@ export class UserEditComponent implements OnInit{
                 }
             },
             complete: () => {
-                console.log('Request completed');
+                console.log('Request completed - edit info');
             }
         })
     }
