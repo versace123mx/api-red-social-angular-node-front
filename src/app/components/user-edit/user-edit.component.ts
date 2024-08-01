@@ -1,12 +1,14 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute, Params } from "@angular/router";
+import { GLOBAL } from "../../services/global";
 import { User } from "../../models/user";
 import { UserService } from "../../services/user.service";
+import { UploadService } from "src/app/services/upload.service";
 
 @Component({
     selector: 'user-edit',
     templateUrl: './user-edit.component.html',
-    providers:[UserService]
+    providers:[UserService,UploadService]
 })
 export class UserEditComponent implements OnInit{
     title;
@@ -15,11 +17,14 @@ export class UserEditComponent implements OnInit{
     token;
     status: string;
     msg:string;
+    filesToUpload: Array<File>;
+    url: string
 
     constructor(
         private _route: ActivatedRoute,
         private _router: Router,
-        private _userService: UserService
+        private _userService: UserService,
+        private _uploadService: UploadService
     ){
         this.title = 'Actualizar mis datos'
         this.user = this._userService.getDataUSer(),
@@ -27,6 +32,8 @@ export class UserEditComponent implements OnInit{
         this.token = this._userService.getStats()
         this.status = ''
         this.msg = ''
+        this.filesToUpload = []
+        this.url = GLOBAL.url
     }
 
     ngOnInit(){
@@ -53,6 +60,10 @@ export class UserEditComponent implements OnInit{
                 //userEditForm.reset()
 
                 //Dice el victor que aqui tendria que ir la carga de la imagen
+                this._uploadService.makeFileRequest(this.url+'/update-image',this.filesToUpload,datosUser.token,'archivo')
+                .then((result:any) => {
+                    console.log(result)
+                })
             },
             error: (error) => {
                 console.log(error);
@@ -71,5 +82,13 @@ export class UserEditComponent implements OnInit{
                 console.log('Request completed');
             }
         })
+    }
+
+    
+    
+    fileChangeEvent(fileInput:any){
+        //console.log(fileInput.target.files[0])
+        this.filesToUpload = <Array<File>>fileInput.target.files;
+        //console.log(this.filesToUpload)
     }
 }

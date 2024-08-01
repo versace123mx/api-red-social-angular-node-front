@@ -27,6 +27,10 @@
                 <label for="">Bio</label>
                 <input type="text" name="bio" #bio="ngModel"[(ngModel)]="user.bio" class="form-control">
             </p>
+            <p>
+                <label class="form-label">Cambia la imagen de tu avatar</label>
+                <input class="form-control" type="file" id="formFile" name="archivo" (change)="fileChangeEvent($event)">
+            </p>
             <input type="submit" value="{{title}}" class="btn btn-success" [disabled]="!userEditForm.form.valid">
         </form>
     </div>
