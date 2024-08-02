@@ -31,6 +31,9 @@
                 <label class="form-label">Cambia la imagen de tu avatar</label>
                 <input class="form-control" type="file" id="formFile" name="archivo" (change)="fileChangeEvent($event)">
             </p>
+            <div *ngIf="user.imagen">
+                <img src="{{url+'/mostrar-imagen-perfil-nameImage/'+user.imagen}}" alt="">
+            </div>
             <input type="submit" value="{{title}}" class="btn btn-success" [disabled]="!userEditForm.form.valid">
         </form>
     </div>
