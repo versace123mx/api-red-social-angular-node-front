@@ -55,10 +55,10 @@
     
     <!-- Botones de usario cuando tiene una session-->
     <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="validatos">
-      <li class="avatar">
-        <!-- Cargar Avatar-->
-      </li>
       <div class="dropdown mx-5" >
+        <span *ngIf="data.imagen">
+          <img src="{{url+'/mostrar-imagen-perfil-nameImage/'+data.imagen}}" class="rounded-circle" style="width: 70px;" alt="Avatar" />
+        </span>        
         <button class="btn btn-danger dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           {{data.name}}
         </button>

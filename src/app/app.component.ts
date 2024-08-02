@@ -1,6 +1,7 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { UserService } from './services/user.service';
+import { GLOBAL } from './services/global';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ export class AppComponent implements OnInit, DoCheck{
   title:string;
   data:any = {}
   validatos:boolean
+  url: string
 
   constructor(
     private _route: ActivatedRoute,
@@ -19,7 +21,8 @@ export class AppComponent implements OnInit, DoCheck{
     private _userService:UserService
   ){
     this.title = 'NGSocial'
-    this.validatos = false
+    this.validatos = false,
+    this.url = GLOBAL.url
   }
 
   ngOnInit(){
