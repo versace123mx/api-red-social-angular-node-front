@@ -1,14 +1,17 @@
 import { Component, OnInit } from "@angular/core"; 
 import { Router, ActivatedRoute, Params } from "@angular/router";
 import { User } from "../../models/user";
+import { Follow } from "../../models/follow";
 import { UserService } from "../../services/user.service";
+import { FollowService } from '../../services/follow.service'
 import { GLOBAL } from "../../services/global";
+
 
 
 @Component({
     selector:'users',
     templateUrl:'./users.component.html',
-    providers:[UserService]
+    providers:[UserService, FollowService]
     
 })
 export class UsersComponent implements OnInit{
@@ -29,6 +32,7 @@ export class UsersComponent implements OnInit{
         private _route: ActivatedRoute,
         private _router: Router,
         private _userService: UserService,
+        private __followService: FollowService
     ){
         this.title = 'Gente',
         this.user = this._userService.getDataUSer()
@@ -101,6 +105,21 @@ export class UsersComponent implements OnInit{
                 if(errorMessage != null){
                     this.status = 'error'
                 }
+            }
+
+        )
+    }
+
+    followUser(idUserSeguir:string){
+
+        this.__followService.addFollow(idUserSeguir).subscribe(
+            response => {
+                this.follows.push(response.data.followed)
+                this.status = response.status
+            },
+            error => {
+                console.log(error)
+                this.status = 'error'
             }
 
         )
