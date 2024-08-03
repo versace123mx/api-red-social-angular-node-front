@@ -114,6 +114,12 @@ export class UsersComponent implements OnInit{
 
         this.__followService.addFollow(idUserSeguir).subscribe(
             response => {
+                //Obtenemos los datos del localstorage actual
+                let datosUser = JSON.parse(localStorage.getItem('stats') ?? '{}')
+                //realizamos la modificaciones pertinentes
+                datosUser.follow = Number(datosUser.follow)+1
+                localStorage.setItem('stats',JSON.stringify(datosUser))
+
                 this.follows.push(response.data.followed)
                 this.status = response.status
             },
