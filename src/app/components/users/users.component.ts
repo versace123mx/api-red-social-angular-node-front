@@ -27,6 +27,7 @@ export class UsersComponent implements OnInit{
     users:Array<any>
     url: string
     follows: Array<any>
+    totalPage: Array<any>
 
     constructor(
         private _route: ActivatedRoute,
@@ -45,6 +46,7 @@ export class UsersComponent implements OnInit{
         this.users = []
         this.url = GLOBAL.url
         this.follows = []
+        this.totalPage = []
     }
 
     ngOnInit() {
@@ -92,6 +94,7 @@ export class UsersComponent implements OnInit{
                     this.pages = response.totalPaginas
                     this.users = response.data
                     this.follows = response.follows
+                    this.totalPage = Array.from({ length: this.total }, (_, i) => i + 1); // Genera un array del 1 al 10
 
                     if(page > this.total){
                         this._router.navigate(['/gente',1])
@@ -122,6 +125,28 @@ export class UsersComponent implements OnInit{
 
                 this.follows.push(response.data.followed)
                 this.status = response.status
+            },
+            error => {
+                console.log(error)
+                this.status = 'error'
+            }
+
+        )
+    }
+
+    unfollowUser(idUserUnFollow:string){
+
+        this.__followService.unFollow(idUserUnFollow).subscribe(
+            response => {
+                //Obtenemos los datos del localstorage actual
+                const datosUser = JSON.parse(localStorage.getItem('stats') ?? '{}')
+                //realizamos la modificaciones pertinentes
+                datosUser.follow = Number(datosUser.follow)-1
+                localStorage.setItem('stats',JSON.stringify(datosUser))
+
+                //eliminar del arreglo de follows
+                const siguiendo = this.follows.filter(e => e != idUserUnFollow);
+                this.follows = siguiendo
             },
             error => {
                 console.log(error)

@@ -20,4 +20,12 @@ export class FollowService{
         
     }
 
+    unFollow(follow=''):Observable<any>{
+        let data = JSON.parse(localStorage.getItem('data') ?? '{}')
+        let headers = new HttpHeaders().set('Content-Type','application/json')
+                                        .set('x-token',data.token)
+        return this._http.delete(this.url+'/follow/unfollow/'+follow, {headers})
+        
+    }
+
 }
