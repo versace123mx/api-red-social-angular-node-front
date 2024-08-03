@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
     ){
         this.title = "Registrate"
         this.nombre = "Gustavo"
-        this.user = new User("","","","","","role_user","",true,"")
+        this.user = new User("","","","","","role_user","no-image.jpg",true,"")
         this.msg = ''
         this.status = ''
         this.errores = []
