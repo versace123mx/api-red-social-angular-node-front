@@ -19,6 +19,7 @@ export class UserEditComponent implements OnInit{
     msg:string;
     filesToUpload: Array<File>;
     url: string
+    newImagen: string
 
     constructor(
         private _route: ActivatedRoute,
@@ -34,10 +35,13 @@ export class UserEditComponent implements OnInit{
         this.msg = ''
         this.filesToUpload = []
         this.url = GLOBAL.url
+        this.newImagen = ''
     }
 
     ngOnInit(){
-        console.log(this.user)
+        if(!this.newImagen.length){
+            this.newImagen =  this.user.imagen
+        }
         console.log('user-edit component se ha cargado')
     }
 
@@ -60,7 +64,7 @@ export class UserEditComponent implements OnInit{
                 this._uploadService.makeFileRequest(this.url+'/update-image',this.filesToUpload,datosUser.token,'archivo')
                 .then((result:any) => {
                     datosUser.imagen = result.data
-
+                    this.newImagen = result.data
                     //volvemos a actualiza el localstorga
                     localStorage.setItem('data',JSON.stringify(datosUser))
                 })

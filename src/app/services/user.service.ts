@@ -55,4 +55,19 @@ export class UserService{
                                         .set('x-token',data.token)
         return this._http.put(this.url+'/update',params, {headers})
     }
+
+    getUsers(page=0):Observable<any>{
+        
+        let data = JSON.parse(localStorage.getItem('data') ?? '{}')
+        let headers = new HttpHeaders().set('Content-Type','application/json')
+                                        .set('x-token',data.token)
+        return this._http.get(this.url+'/list?pagina='+page, {headers})
+    }
+
+    getUser(id=''):Observable<any>{
+        let data = JSON.parse(localStorage.getItem('data') ?? '{}')
+        let headers = new HttpHeaders().set('Content-Type','application/json')
+                                        .set('x-token',data.token)
+        return this._http.get(this.url+'/profile/'+id, {headers})
+    }
 }

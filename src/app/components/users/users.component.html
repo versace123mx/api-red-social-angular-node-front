@@ -1,0 +1,52 @@
+<div class="container my-5 bg-light text-dark">
+    <div class="row text-center">
+        <h1 class="h1-strong">{{title}}</h1>
+    </div>
+    
+    <div class="row">
+        <div class="my-3">            
+            <div class="col-sm-6 my-3" *ngFor="let user of users"><!--Aqui se recorre y contruyen los perfiles-->
+                <div class="card">
+                    <div class="card-body">
+                        <div col-sm-6>
+                            <div class="avatar mx-auto bg-white my-2">
+                                <img src="{{url+'/mostrar-imagen-perfil-nameImage/'+user.imagen}}" class="rounded-circle" style="width: 80px;" alt="Avatar" />
+                                <a href="#" class="fw-bolder text-danger text-decoration-none fs-5 mx-3 card-title">{{ user.name }} {{ user.surname }}</a>
+                            </div>
+                            <!--
+                            <h5 class="card-title">
+                                <a href="#">{{ user.name }} {{ user.surname }}</a>
+                            </h5>
+                            -->
+                        </div>
+                        <p class="card-text">Nick: {{ user.nick }}</p>
+                        <a href="#" class="btn btn-warning mx-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill-add" viewBox="0 0 16 16">
+                                <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                                <path d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4"/>
+                            </svg>
+                            Follow
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill-dash" viewBox="0 0 16 16">
+                                <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M11 12h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1m0-7a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                                <path d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4"/>
+                            </svg>
+                            Unfollow
+                        </a>
+                    </div>
+                </div>
+            </div><!--Fin de construccion de los perfiles-->
+        </div>
+    </div>
+
+    <!--Paginacion-->
+    <div class="row text-center">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item" *ngIf="page > 1"><a class="page-link" [routerLink]="['/gente', prev_page]">Previous</a></li>
+                <li class="page-item" *ngIf="pages != page"><a class="page-link" [routerLink]="['/gente', next_page]">Next</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
