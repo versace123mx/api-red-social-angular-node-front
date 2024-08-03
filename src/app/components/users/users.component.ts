@@ -23,6 +23,7 @@ export class UsersComponent implements OnInit{
     pages:number
     users:Array<any>
     url: string
+    follows: Array<any>
 
     constructor(
         private _route: ActivatedRoute,
@@ -39,6 +40,7 @@ export class UsersComponent implements OnInit{
         this.pages = 0
         this.users = []
         this.url = GLOBAL.url
+        this.follows = []
     }
 
     ngOnInit() {
@@ -85,6 +87,7 @@ export class UsersComponent implements OnInit{
                     this.total = response.totalPaginas
                     this.pages = response.totalPaginas
                     this.users = response.data
+                    this.follows = response.follows
 
                     if(page > this.total){
                         this._router.navigate(['/gente',1])
