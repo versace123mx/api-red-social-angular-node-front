@@ -8,10 +8,12 @@ import { GLOBAL } from "./global";
 export class UserService{
     public url:string;
     public user:string
+    public stats:string
 
     constructor(public _http:HttpClient){
         this.url = GLOBAL.url
         this.user = ''
+        this.stats = ''
     }
 
     register(user:User): Observable<any>{
@@ -46,6 +48,10 @@ export class UserService{
     getStats(){
         let stats = JSON.parse(localStorage.getItem('stats') ?? '{}')
         //hayq ue ver que devuel stats con usuario que no tengan publicaciones o seguidores
+        if (stats) {
+            return this.stats = stats;
+        }
+
     }
 
     updateUser(user:User):Observable<any>{

@@ -89,12 +89,12 @@ export class UsersComponent implements OnInit{
                 if(!response.data){
                     this.status = 'error'
                 }else{
-                    this.status = response.status
-                    this.total = response.totalPaginas
-                    this.pages = response.totalPaginas
-                    this.users = response.data
-                    this.follows = response.follows
-                    this.totalPage = Array.from({ length: this.total }, (_, i) => i + 1); // Genera un array del 1 al 10
+                    this.status = response.status //estatus de la respuesta en este caso seria success
+                    this.total = response.totalPaginas //total de paginas del paginado entregado desde el api
+                    this.pages = response.totalPaginas //total de paginas del paginado entregado desde el api
+                    this.users = response.data //datos en un arreglo de objetos de todos los usuarios exceto el logueado
+                    this.follows = response.follows//arreglo que tiene los id de los usuarios que ya sigo como usuario logueado
+                    this.totalPage = Array.from({ length: this.total }, (_, i) => i + 1); // Genera un array para la paginacion numerada 1,2,3,4
 
                     if(page > this.total){
                         this._router.navigate(['/gente',1])

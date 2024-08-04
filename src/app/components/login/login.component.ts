@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
         this.msg = ''
     }
     ngOnInit() {
-        console.log("Componente cargado")
+        console.log("Componente cargado login")
     }
     onSubmit(){
         this._userService.singup(this.user).subscribe({
