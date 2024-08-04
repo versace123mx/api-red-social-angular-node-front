@@ -18,37 +18,42 @@
                                 </p>
                                 <div class="d-flex justify-content-start rounded-3 p-2 mb-2 bg-body-tertiary">
                                     <div>
-                                        <p class="small text-muted mb-1">
+                                        <p class="small text-muted mb-1 mx-1">
                                             Followin
                                         </p>
-                                        <p class="mb-0">{{ stats.follow }}</p>
+                                        <p class="mb-0 text-center">{{ stats.follow }}</p>
                                     </div>
                                     <div class="px-3">
                                         <p class="small text-muted mb-1">
                                             Followers
                                         </p>
-                                        <p class="mb-0">{{ stats.followme }}</p>
+                                        <p class="mb-0 text-center">{{ stats.followme }}</p>
                                     </div>
                                     <div>
                                         <p class="small text-muted mb-1">
                                             Publicasiones
                                         </p>
-                                        <p class="mb-0">{{stats.publication}}</p>
+                                        <p class="mb-0 text-center">{{stats.publication}}</p>
                                     </div>
                                 </div>
-                                <!--
-<div class="d-flex pt-1">
-<button type="button" data-mdb-button-init data-mdb-ripple-init
-class="btn btn-secondary me-1 flex-grow-1">
-Chat
-</button>
-<button type="button" data-mdb-button-init data-mdb-ripple-init
-class="btn btn-primary flex-grow-1">
-Follow
-</button>
-</div>
--->
                             </div>
+                        </div>
+                        <div class="my-3">
+                            <form #newPubForm="ngForm" (ngSubmit)="onSubmit()">
+                                <label for="exampleFormControlTextarea1" class="form-label">¿Que estas pensando?</label>
+                                <textarea class="form-control mb-3" name="text" 
+                                #text="ngModel" [(ngModel)]="publication.text" 
+                                id="exampleFormControlTextarea1" rows="3" required></textarea>
+                                <span *ngIf="!text.valid && text.touched" class="text-danger fw-bolder">El texto de la publicacion es obligatorio</span>
+                                <div class="my-3">
+                                    <label for="formFile" class="form-label">Sube una foto en tu post</label>
+                                    <input class="form-control" type="file" id="formFile">
+                                </div>
+
+                                <input type="submit" value="Enviar" class="btn btn-primary mt-3" 
+                                [disabled]="!newPubForm.form.valid" />
+                            </form>
+                            
                         </div>
                     </div>
                 </div>
