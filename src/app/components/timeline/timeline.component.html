@@ -1,0 +1,38 @@
+<div class="container my-5 bg-light text-dark">
+    <div class="row text-center">
+        <h1 class="h1-strong">{{title}}</h1>
+    </div>
+
+    <div class="row">
+        <!--Componente de la imagen de los usuarios-->
+        <div class="my-3 col-md-6">
+            <div class="col-12 my-3" ><!--Aqui se recorre y contruyen los perfiles-->
+                <div class="card p-4" style="border-radius: 15px;">
+                    <div class="card-body">
+                        <div class="d-flex">
+                        
+                            <div class="flex-shrink-0">
+                                <img src=""
+                                class="img-fluid rounded-circle"
+                                style="width: 100px;" alt="Avatar" />
+                                
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h5 class="mb-1">
+                                    <a href="#" class="fw-bolder text-danger text-decoration-none fs-5 mx-3 card-title text-capitalize">Nombre</a>
+                                </h5>
+                                <p class="card-text mx-3 fw-bolder">Nick:</p>
+            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!--Fin de construccion de los perfiles-->
+        </div>
+
+        <!--Cargamos el componente del sidebar-->
+        <div class="my-3 col-md-6">
+            <sidebar></sidebar>
+        </div>
+    </div>
+</div>
