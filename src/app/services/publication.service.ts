@@ -20,4 +20,20 @@ export class PublicationService{
                                         .set('x-token',data.token)
         return this._http.post(this.url+'/publication/create',params, {headers})
     }
+
+    getPublications(page=0):Observable<any>{
+
+        let data = JSON.parse(localStorage.getItem('data') ?? '{}')
+        let headers = new HttpHeaders().set('Content-Type','application/json')
+                                        .set('x-token',data.token)
+        return this._http.get(this.url+'/publication/show-publication-following?pagina='+page, {headers})
+    }
+
+    deletePublication(){
+        let data = JSON.parse(localStorage.getItem('data') ?? '{}')
+        let headers = new HttpHeaders().set('Content-Type','application/json')
+                                        .set('x-token',data.token)
+        return this._http.get(this.url+'/publication/show-publication-following', {headers})
+    }
+
 }
