@@ -39,7 +39,14 @@
                             </div>
                         </div>
                         <div class="my-3">
-                            <form #newPubForm="ngForm" (ngSubmit)="onSubmit()">
+                            <div class="alert alert-success" *ngIf="status=='success'">
+                                {{msg}}
+                            </div>
+                            <div class="alert alert-danger" *ngIf="status=='error'">
+                                El registro no se ha podido Guardar 
+                            </div>
+
+                            <form #newPubForm="ngForm" (ngSubmit)="onSubmit(newPubForm)">
                                 <label for="exampleFormControlTextarea1" class="form-label">¿Que estas pensando?</label>
                                 <textarea class="form-control mb-3" name="text" 
                                 #text="ngModel" [(ngModel)]="publication.text" 

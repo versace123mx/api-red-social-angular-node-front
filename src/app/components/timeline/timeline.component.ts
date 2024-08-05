@@ -28,7 +28,7 @@ export class TimelineComponent implements OnInit{
         this.url = GLOBAL.url
         this.user = this._userService.getDataUSer()
         this.stats = this._userService.getStats()
-        this.publication = new Publication('','','')
+        this.publication = new Publication('','')
     }
 
     ngOnInit(){
