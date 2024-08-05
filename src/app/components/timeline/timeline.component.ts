@@ -27,7 +27,6 @@ export class TimelineComponent implements OnInit {
     noMore:boolean;
     public stats: { follow: number, followme: number, publication: number };
     public publications: any
-    fechaCreacion:string
 
 
     constructor(
