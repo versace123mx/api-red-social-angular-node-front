@@ -1,6 +1,15 @@
 <div class="container my-5 bg-light text-dark">
     <div class="row">
-        <h1 class="h1-strong">{{title}}</h1>
+        <div class="col-6">
+            <div class="row my-4">
+                <div class="col-md-6">
+                    <h1 class="h1-strong">{{title}}</h1>
+                </div>
+                <div class="col-md-6 text-end">
+                    <button class="btn btn-success" (click)="refresh()">Refresh Timeline</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="row">
@@ -45,7 +54,7 @@
 
         <!--Cargamos el componente del sidebar-->
         <div class="my-3 col-md-6">
-            <sidebar (sended)="refresh($event)"></sidebar>
+            <sidebar (sended)="refresh()"></sidebar>
         </div>
         <div class="pb-4">
             <span *ngIf="total">
