@@ -104,6 +104,6 @@ export class TimelineComponent implements OnInit {
     }
 
     refresh(event:any){
-        this.getPublications(this.page)
+        this.getPublications(1)
     }
 }
