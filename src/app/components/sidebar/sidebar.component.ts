@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, EventEmitter, OnInit, Input, Output } from "@angular/core";
 import { UserService } from "../../services/user.service";
 import { GLOBAL } from "../../services/global";
 import { User } from "../../models/user";
@@ -58,5 +58,10 @@ export class SidebarComponent implements OnInit {
             }
 
         )
+    }
+
+    @Output() sended = new EventEmitter();
+    sendPublication(event:any){
+        this.sended.emit({send:'true'})
     }
 }

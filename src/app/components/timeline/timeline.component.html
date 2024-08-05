@@ -45,7 +45,7 @@
 
         <!--Cargamos el componente del sidebar-->
         <div class="my-3 col-md-6">
-            <sidebar></sidebar>
+            <sidebar (sended)="refresh($event)"></sidebar>
         </div>
         <div class="pb-4">
             <span *ngIf="total">
