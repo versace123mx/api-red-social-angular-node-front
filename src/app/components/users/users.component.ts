@@ -96,6 +96,10 @@ export class UsersComponent implements OnInit{
                     this.follows = response.follows//arreglo que tiene los id de los usuarios que ya sigo como usuario logueado
                     this.totalPage = Array.from({ length: this.total }, (_, i) => i + 1); // Genera un array para la paginacion numerada 1,2,3,4
 
+                    $("html,body").animate({
+                        scrollTop: 0
+                    })
+
                     if(page > this.total){
                         this._router.navigate(['/gente',1])
                     }
