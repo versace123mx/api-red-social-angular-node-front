@@ -13,6 +13,7 @@ import { UserEditComponent } from './components/user-edit/user-edit.component'
 import { UsersComponent } from './components/users/users.component'; 
 import { SidebarComponent } from './components/sidebar/sidebar.component'
 import { TimelineComponent } from './components/timeline/timeline.component'
+import { DateFormatPipe } from './date-format.pipe'
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { TimelineComponent } from './components/timeline/timeline.component'
     UserEditComponent,
     UsersComponent,
     SidebarComponent,
-    TimelineComponent
+    TimelineComponent,
+    DateFormatPipe
   ],
   imports: [
     BrowserModule,

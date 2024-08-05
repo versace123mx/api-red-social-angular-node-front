@@ -27,6 +27,7 @@ export class TimelineComponent implements OnInit {
     noMore:boolean;
     public stats: { follow: number, followme: number, publication: number };
     public publications: any
+    fechaCreacion:string
 
 
     constructor(
@@ -47,12 +48,18 @@ export class TimelineComponent implements OnInit {
         this.msg = ''
         this.itemsPorPage = 0
         this.noMore = false;
+        this.fechaCreacion = ''
     }
 
     ngOnInit() {
         console.log("componente timeline cargado correctamente")
         this.getPublications(this.page)
     }
+/*
+    ngDoCheck() {
+        this.getPublications(this.page)
+    }
+*/
 
     getPublications(page = 0, adding = false) {
         this._publicationService.getPublications(page).subscribe(

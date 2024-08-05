@@ -31,7 +31,10 @@
                                     <p class="card-text mx-3 fw-bolder fs-5">
                                         {{publication.text}}
                                     </p>
-                
+                                    <div>
+                                        <p class="text-end fs-6 fw-lighter datePublication">{{ publication.create_at | dateFormat:'dddd, MMMM Do YYYY, h:mm:ss a' }}</p>
+                                        <p class="text-end fs-6 fw-lighter datePublication">{{ publication.create_at | dateFormat:'':true }}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
