@@ -48,7 +48,6 @@ export class TimelineComponent implements OnInit {
         this.msg = ''
         this.itemsPorPage = 0
         this.noMore = false;
-        this.fechaCreacion = ''
     }
 
     ngOnInit() {
