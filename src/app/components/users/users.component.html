@@ -19,7 +19,7 @@
                             </div>
                             <div class="flex-grow-1 ms-3">
                                 <h5 class="mb-1">
-                                    <a href="#" class="fw-bolder text-danger text-decoration-none fs-5 mx-3 card-title text-capitalize">{{
+                                    <a [routerLink]="['/profile', user.uid]" class="fw-bolder text-danger text-decoration-none fs-5 mx-3 card-title text-capitalize">{{
                                         user.name }} {{ user.surname }}</a>
                                 </h5>
                                 <p class="card-text mx-3 fw-bolder">Nick: {{ user.nick }}</p>

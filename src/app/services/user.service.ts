@@ -38,11 +38,11 @@ export class UserService{
         }
     }
 
-    getCounter(): Observable<any>{
+    getCounter(id:string): Observable<any>{
         let data = JSON.parse(localStorage.getItem('data') ?? '{}')
         let headers = new HttpHeaders().set('Content-Type','application/json')
                                         .set('x-token',data.token)
-        return this._http.get(this.url+'/follow/followsCount', {headers})
+        return this._http.get(this.url+'/follow/followsCount?id='+id, {headers})
     }
 
     getStats(){

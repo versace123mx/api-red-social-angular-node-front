@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
     //Controlador para obtener los contadores del usuario
     getCounters(){
 
-        this._userService.getCounter().subscribe({
+        this._userService.getCounter('').subscribe({
             next: (response) => {
                 //Persistir datos del usuario
                 localStorage.setItem('stats',JSON.stringify(response.data[0]))
