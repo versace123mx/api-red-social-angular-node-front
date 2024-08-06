@@ -25,7 +25,7 @@ export class ProfileComponent implements OnInit{
     total:number
     pages:number
     users:Array<any>
-    follows:any
+    follows:Array<any>
 
     followin:number
     followers:number
@@ -34,6 +34,7 @@ export class ProfileComponent implements OnInit{
 
     follow:boolean
     iduserLogins:string
+    userReviewfollowers:number
 
     constructor(
         private _route: ActivatedRoute,
@@ -59,6 +60,7 @@ export class ProfileComponent implements OnInit{
         this.follow = false
         this.iduserLogins = ''
         this.mesiguen = []
+        this.userReviewfollowers = 0
     }
 
     ngOnInit(){
@@ -90,14 +92,17 @@ export class ProfileComponent implements OnInit{
         )
     }
 
+    //aqui tengo que mandar el storage del usuario que se esta revisando el perfil
     getCounters(id:string){
         this._userService.getCounter(id).subscribe(
             response => {
                 this.status = 'success'
-                //console.log(response.data)
-                this.followin = response.data[0].follow
-                this.followers = response.data[0].followme
-                this.publications = response.data[0].publication
+                localStorage.setItem('statsUserReview',JSON.stringify(response.data[0]))
+                const datosUserReview = JSON.parse(localStorage.getItem('statsUserReview') ?? '{}')
+                console.log(datosUserReview)
+                this.followin = datosUserReview.follow
+                this.followers = datosUserReview.followme //cuando lo sigo
+                this.publications = datosUserReview.publication
             },
             error => {
                 this.status = 'error'
@@ -115,7 +120,7 @@ export class ProfileComponent implements OnInit{
                 this.iduserLogins = datosUserIdLogin.id
                 this.follows = response.follows //areglo con los id de los usuarios que siguen al usuario logueado  
                 this.mesiguen = response.followers          
-                console.log(response)
+                //console.log(this.follows)
             },
             error => {
                 this.status = 'error'
@@ -125,10 +130,65 @@ export class ProfileComponent implements OnInit{
         )
     }
 
-    followUser(id:string){
+    followUser(idUserSeguir:string){
 
+        this.__followService.addFollow(idUserSeguir).subscribe(
+            response => {
+                //Obtenemos los datos del localstorage actual
+                let datosUser = JSON.parse(localStorage.getItem('statsUserReview') ?? '{}')
+                //realizamos la modificaciones pertinentes
+                datosUser.followme = Number(datosUser.followme)+1
+                localStorage.setItem('statsUserReview',JSON.stringify(datosUser))
+
+                datosUser = JSON.parse(localStorage.getItem('statsUserReview') ?? '{}')
+                this.followers = datosUser.followme
+                this.follows.push(idUserSeguir)
+                this.status = response.status
+
+
+                //Modificar el followin original del usuario logueado
+                datosUser = JSON.parse(localStorage.getItem('stats') ?? '{}')
+                datosUser.follow = Number(datosUser.follow)+1
+                localStorage.setItem('stats',JSON.stringify(datosUser))
+            },
+            error => {
+                console.log(error)
+                this.status = 'error'
+            }
+
+        )
     }
-    unfollowUser(id:string){
 
+    unfollowUser(idUserUnFollow:string){
+
+        this.__followService.unFollow(idUserUnFollow).subscribe(
+            response => {
+                //Obtenemos los datos del localstorage actual
+                let datosUser = JSON.parse(localStorage.getItem('statsUserReview') ?? '{}')
+                //realizamos la modificaciones pertinentes
+                datosUser.followme = Number(datosUser.followme)-1
+                localStorage.setItem('statsUserReview',JSON.stringify(datosUser))
+
+                //quitamos el follow de la parte visual del usuario que se busco
+                datosUser = JSON.parse(localStorage.getItem('statsUserReview') ?? '{}')
+                this.followers = datosUser.followme
+
+                //eliminar del arreglo de follows
+                const siguiendo = this.follows.filter(e => e != idUserUnFollow);
+                this.follows = siguiendo
+
+
+                //Modificar el followin original del usuario logueado
+                datosUser = JSON.parse(localStorage.getItem('stats') ?? '{}')
+                datosUser.follow = Number(datosUser.follow)-1
+                localStorage.setItem('stats',JSON.stringify(datosUser))
+
+            },
+            error => {
+                console.log(error)
+                this.status = 'error'
+            }
+
+        )
     }
 }
