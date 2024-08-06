@@ -30,6 +30,7 @@ export class ProfileComponent implements OnInit{
     followin:number
     followers:number
     publications:number
+    mesiguen:any
 
     follow:boolean
     iduserLogins:string
@@ -57,6 +58,7 @@ export class ProfileComponent implements OnInit{
         this.publications = 0
         this.follow = false
         this.iduserLogins = ''
+        this.mesiguen = []
     }
 
     ngOnInit(){
@@ -111,8 +113,9 @@ export class ProfileComponent implements OnInit{
                 this.status = 'success'
                 const datosUserIdLogin = JSON.parse(localStorage.getItem('data') ?? '{}')
                 this.iduserLogins = datosUserIdLogin.id
-                this.follows = response.follows //areglo con los id de los usuarios que siguen al usuario logueado            
-                
+                this.follows = response.follows //areglo con los id de los usuarios que siguen al usuario logueado  
+                this.mesiguen = response.followers          
+                console.log(response)
             },
             error => {
                 this.status = 'error'

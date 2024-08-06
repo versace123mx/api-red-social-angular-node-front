@@ -26,7 +26,7 @@
                                         <a href="#" class="text-decoration-none">
                                             {{userProfile.name}} {{userProfile.surname}}
                                         </a>
-                                        <div class="badge text-bg-secondary text-wrap datePublication">
+                                        <div class="badge text-bg-secondary text-wrap datePublication" *ngIf="mesiguen.indexOf(userProfile.uid)>=0">
                                             te sigue
                                           </div>
                                     </h5>
