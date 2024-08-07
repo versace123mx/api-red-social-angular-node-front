@@ -61,6 +61,12 @@ export class ProfileComponent implements OnInit{
         this.iduserLogins = ''
         this.mesiguen = []
         this.userReviewfollowers = 0
+
+        //Esto se usua, por que si entras a Gente, luego ves el perfil de otra persona y luego quieres
+        //entrar al perfil del user logueado este no recargaba sus publicaciones
+        this._router.routeReuseStrategy.shouldReuseRoute = function () {
+            return false;
+          };
     }
 
     ngOnInit(){
