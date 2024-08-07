@@ -9,85 +9,90 @@
         <!--Componente de la imagen de los usuarios-->
         <div class="my-3 col-md-6">
 
-            <span>
-                <div class="col-12 my-3"><!--Aqui se recorre y contruyen los perfiles-->
-                    <div class="card p-4" style="border-radius: 15px;">
-                        <div class="card-body">
-                            <div class="d-flex">
 
-                                <div class="flex-shrink-0">
-                                    <img src="{{url+'/mostrar-imagen-perfil-nameImage/'+userProfile.imagen}}"
-                                    class="img-fluid"
-                                    style="width: 150px; border-radius: 10px;" alt="Avatar" />
-                                </div>
+            <div class="col-12 my-3"><!--Aqui se recorre y contruyen los perfiles-->
+                <div class="card p-4" style="border-radius: 15px;">
+                    <div class="card-body">
+                        <div class="d-flex">
 
-                                <div class="flex-grow-1 ms-3">
-                                    <h5 class="mb-1 text-capitalize fw-bolder">
-                                        <a href="#" class="text-decoration-none">
-                                            {{userProfile.name}} {{userProfile.surname}}
-                                        </a>
-                                        <div class="badge text-bg-secondary text-wrap datePublication" *ngIf="mesiguen.indexOf(userProfile.uid)>=0">
-                                            te sigue
-                                          </div>
-                                    </h5>
-                                    <p class="card-text mx-3 fw-bolder fs-5">
-                                        @{{userProfile.nick}}
-                                    </p>
-                                    <div class="d-flex justify-content-start rounded-3 p-2 mb-2 bg-body-tertiary">
-                                        <div>
-                                            <p class="small text-muted mb-1 mx-1">
-                                                Followin
-                                            </p>
-                                            <p class="mb-0 text-center">{{followin}}</p>
-                                        </div>
-                                        <div class="px-3">
-                                            <p class="small text-muted mb-1">
-                                                Followers
-                                            </p>
-                                            <p class="mb-0 text-center">{{followers}}</p>
-                                        </div>
-                                        <div>
-                                            <p class="small text-muted mb-1">
-                                                Publicasiones
-                                            </p>
-                                            <p class="mb-0 text-center">{{publications}}</p>
-                                        </div>
+                            <div class="flex-shrink-0">
+                                <img src="{{url+'/mostrar-imagen-perfil-nameImage/'+userProfile.imagen}}"
+                                    class="img-fluid" style="width: 150px; border-radius: 10px;" alt="Avatar" />
+                            </div>
+
+                            <div class="flex-grow-1 ms-3">
+                                <h5 class="mb-1 text-capitalize fw-bolder">
+                                    <a href="#" class="text-decoration-none">
+                                        {{userProfile.name}} {{userProfile.surname}}
+                                    </a>
+                                    <div class="badge text-bg-secondary text-wrap datePublication"
+                                        *ngIf="mesiguen.indexOf(userProfile.uid)>=0">
+                                        te sigue
+                                    </div>
+                                </h5>
+                                <p class="card-text mx-3 fw-bolder fs-5">
+                                    @{{userProfile.nick}}
+                                </p>
+                                <div class="d-flex justify-content-start rounded-3 p-2 mb-2 bg-body-tertiary">
+                                    <div>
+                                        <p class="small text-muted mb-1 mx-1">
+                                            Followin
+                                        </p>
+                                        <p class="mb-0 text-center">{{followin}}</p>
+                                    </div>
+                                    <div class="px-3">
+                                        <p class="small text-muted mb-1">
+                                            Followers
+                                        </p>
+                                        <p class="mb-0 text-center">{{followers}}</p>
+                                    </div>
+                                    <div>
+                                        <p class="small text-muted mb-1">
+                                            Publicasiones
+                                        </p>
+                                        <p class="mb-0 text-center">{{publications}}</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="my-4">
-                                Bio: {{userProfile.bio}}
-                            </div>
-                            <div>
-                                <span *ngIf="follows.indexOf(userProfile.uid) < 0 && (iduserLogins != userProfile.uid)">
-                                    <button class="btn btn-warning mx-3" (click)="followUser(userProfile.uid)">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                            class="bi bi-person-fill-add" viewBox="0 0 16 16">
-                                            <path
-                                                d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                                            <path
-                                                d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4" />
-                                        </svg>
-                                        Follow
-                                    </button>
-                                </span>
-                                <span *ngIf="follows.indexOf(userProfile.uid) >= 0 && (iduserLogins != userProfile.uid)">
-                                    <button href="#" class="btn btn-danger mx-3" (click)="unfollowUser(userProfile.uid)">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                            class="bi bi-person-fill-dash" viewBox="0 0 16 16">
-                                            <path
-                                                d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M11 12h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1m0-7a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                                            <path
-                                                d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4" />
-                                        </svg>
-                                        Unfollow
-                                    </button>
-                                </span>
-                            </div>
+                        </div>
+                        <div class="my-4">
+                            Bio: {{userProfile.bio}}
+                        </div>
+                        <div>
+                            <span *ngIf="follows.indexOf(userProfile.uid) < 0 && (iduserLogins != userProfile.uid)">
+                                <button class="btn btn-warning mx-3" (click)="followUser(userProfile.uid)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-person-fill-add" viewBox="0 0 16 16">
+                                        <path
+                                            d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                                        <path
+                                            d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4" />
+                                    </svg>
+                                    Follow
+                                </button>
+                            </span>
+                            <span *ngIf="follows.indexOf(userProfile.uid) >= 0 && (iduserLogins != userProfile.uid)">
+                                <button href="#" class="btn btn-danger mx-3" (click)="unfollowUser(userProfile.uid)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-person-fill-dash" viewBox="0 0 16 16">
+                                        <path
+                                            d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M11 12h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1m0-7a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                                        <path
+                                            d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4" />
+                                    </svg>
+                                    Unfollow
+                                </button>
+                            </span>
                         </div>
                     </div>
-                </div><!--Fin de construccion de los perfiles-->
-            </span>
+                </div>
+            </div><!--Fin de construccion de los perfiles-->
+
+            <!--Cargamos el componente de publicaciones-->
+            <div *ngIf="userProfile.uid">
+                <publications [usuarioView]="userProfile.uid"></publications>
+            </div>
+
         </div>
 
         <!--Cargamos el componente del sidebar-->

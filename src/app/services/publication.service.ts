@@ -41,6 +41,6 @@ export class PublicationService{
         let data = JSON.parse(localStorage.getItem('data') ?? '{}')
         let headers = new HttpHeaders().set('Content-Type','application/json')
                                         .set('x-token',data.token)
-        return this._http.get(this.url+'/publication/show-publications/id='+id+'?pagina='+page, {headers})
+        return this._http.get(this.url+'/publication/show-publications/'+id+'?pagina='+page, {headers})
     }
 }

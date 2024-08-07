@@ -15,6 +15,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component'
 import { TimelineComponent } from './components/timeline/timeline.component'
 import { DateFormatPipe } from './date-format.pipe'
 import { ProfileComponent } from './components/profile/profile.component'
+import { PublicationsComponent } from './components/publications/publications.component'
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ProfileComponent } from './components/profile/profile.component'
     SidebarComponent,
     TimelineComponent,
     DateFormatPipe,
-    ProfileComponent
+    ProfileComponent,
+    PublicationsComponent
   ],
   imports: [
     BrowserModule,

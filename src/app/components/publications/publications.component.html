@@ -1,0 +1,46 @@
+<!--Componente de la imagen de los usuarios-->
+<div *ngIf="!total">
+    {{msg}}
+</div>    
+<span *ngIf="total">
+        <div class="col-12 my-3" *ngFor="let publication of publications"><!--Aqui se recorre y contruyen los perfiles-->
+            <div class="card p-4" style="border-radius: 15px;">
+                <div class="card-body">
+                    <div class="d-flex">
+
+                        <div class="flex-shrink-0">
+                            <img src="{{url+'/mostrar-imagen-perfil-nameImage/'+publication.user.imagen}}"
+                                class="img-fluid rounded-circle" style="width: 100px;" alt="Avatar" />
+
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <h5 class="mb-1">
+                                <a href="#"
+                                    class="text-danger text-decoration-none fs-6 mx-3 card-title text-capitalize">
+                                    {{publication.user.name}} {{publication.user.surname}}
+                                </a>
+                            </h5>
+                            <p class="card-text mx-3 fw-bolder fs-5">
+                                {{publication.text}}
+                            </p>
+                            <div>
+                                <p class="text-end fs-6 fw-lighter datePublication">{{ publication.create_at |
+                                    dateFormat:'dddd, MMMM Do YYYY, h:mm:ss a' }}</p>
+                                <p class="text-end fs-6 fw-lighter datePublication">{{ publication.create_at |
+                                    dateFormat:'':true }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--Fin de construccion de los perfiles-->
+    </span>
+
+
+
+<div class="pb-4">
+    <span *ngIf="total">
+        <button class="btn btn-primary mx-2" (click)="viewMore()" *ngIf="!noMore">Ver mas Publicaciones</button>
+        <button class="btn btn-success" (click)="refresh()">Refresh Publications</button>
+    </span>
+</div>
