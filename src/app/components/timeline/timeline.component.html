@@ -20,29 +20,64 @@
             </div>
 
             <span *ngIf="total">
-                <div class="col-12 my-3" *ngFor="let publication of publications"><!--Aqui se recorre y contruyen los perfiles-->
+                <div class="col-12 my-3" *ngFor="let publication of publications">
+                    <!--Aqui se recorre y contruyen los perfiles-->
                     <div class="card p-4" style="border-radius: 15px;">
                         <div class="card-body">
                             <div class="d-flex">
 
                                 <div class="flex-shrink-0">
                                     <img src="{{url+'/mostrar-imagen-perfil-nameImage/'+publication.user.imagen}}"
-                                    class="img-fluid rounded-circle"
-                                    style="width: 100px;" alt="Avatar" />
-                                    
+                                        class="img-fluid rounded-circle" style="width: 100px;" alt="Avatar" />
+
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h5 class="mb-1">
-                                        <a [routerLink]="['/profile', publication.user._id]" class="text-danger text-decoration-none fs-6 mx-3 card-title text-capitalize">
+                                        <a [routerLink]="['/profile', publication.user._id]"
+                                            class="text-danger text-decoration-none fs-6 mx-3 card-title text-capitalize">
                                             {{publication.user.name}} {{publication.user.surname}}
                                         </a>
                                     </h5>
                                     <p class="card-text mx-3 fw-bolder fs-5">
                                         {{publication.text}}
                                     </p>
+                                    <div class="flex-shrink-0 text-end my-4 bg-image hover-zoom" role="button" *ngIf="publication.file">
+                                        <a class="" data-bs-toggle="modal" href="#staticBackdrop_{{publication.uid}}">
+                                            
+                                        <img src="{{url+'/publication/show-image-publication/'+publication.uid}}"
+                                            alt="Imagen perfil" class="img-fluid"
+                                            style="width: 150px; border-radius: 10px;" />
+                                        </a>
+                                    
+                                    
+                                        <!-- Modal Para mostrar Iamgen-->
+                                        <div class="modal fade" id="staticBackdrop_{{publication.uid}}" data-bs-backdrop="static"
+                                            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body text-center">
+                                                        <img src="{{url+'/publication/show-image-publication/'+publication.uid}}"
+                                                        alt="Imagen perfil" class="img-fluid"
+                                                        style="width: 800px; border-radius: 10px;" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
+                                    
+                                    </div>
+                                    
+
                                     <div>
-                                        <p class="text-end fs-6 fw-lighter datePublication">{{ publication.create_at | dateFormat:'dddd, MMMM Do YYYY, h:mm:ss a' }}</p>
-                                        <p class="text-end fs-6 fw-lighter datePublication">{{ publication.create_at | dateFormat:'':true }}</p>
+                                        <p class="text-end fs-6 fw-lighter datePublication">{{ publication.create_at |
+                                            dateFormat:'dddd, MMMM Do YYYY, h:mm:ss a' }}</p>
+                                        <p class="text-end fs-6 fw-lighter datePublication">{{ publication.create_at |
+                                            dateFormat:'':true }}</p>
                                     </div>
                                 </div>
                             </div>

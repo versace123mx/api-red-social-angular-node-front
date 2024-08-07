@@ -16,6 +16,7 @@ import { TimelineComponent } from './components/timeline/timeline.component'
 import { DateFormatPipe } from './date-format.pipe'
 import { ProfileComponent } from './components/profile/profile.component'
 import { PublicationsComponent } from './components/publications/publications.component'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { PublicationsComponent } from './components/publications/publications.co
     AppRoutingModule,
     routing,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [
     appRoutingProviders
