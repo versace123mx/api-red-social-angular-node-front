@@ -17,7 +17,7 @@ export class TimelineComponent implements OnInit {
 
     title: string
     url: string
-    user: User
+    user: any
     page: number
     status: string
     total: number
