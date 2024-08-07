@@ -11,7 +11,7 @@
                             </div>
                             <div class="flex-grow-1 ms-3">
                                 <h5 class="mb-1 text-capitalize fw-bolder">
-                                    <a href="#" class="text-decoration-none">{{user.name}} {{user.surname}}</a>
+                                    <a [routerLink]="['/profile', user.id]" class="text-decoration-none">{{user.name}} {{user.surname}}</a>
                                 </h5>
                                 <p class="mb-2 pb-1">
                                     Nick: {{ user.nick }}

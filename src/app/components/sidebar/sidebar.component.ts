@@ -11,7 +11,7 @@ import { PublicationService } from "../../services/publication.service";
 })
 export class SidebarComponent implements OnInit {
     public url: string
-    public user: User
+    public user: any
     public stats: { follow: number, followme: number, publication: number };
     public title: string
     public publication: Publication
