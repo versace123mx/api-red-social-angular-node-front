@@ -54,7 +54,7 @@
                                 <span *ngIf="!text.valid && text.touched" class="text-danger fw-bolder">El texto de la publicacion es obligatorio</span>
                                 <div class="my-3">
                                     <label for="formFile" class="form-label">Sube una foto en tu post</label>
-                                    <input class="form-control" type="file" id="formFile">
+                                    <input class="form-control" type="file" id="formFile" (change)="fileChangeEvent($event)">
                                 </div>
 
                                 <input type="submit" value="Enviar" class="btn btn-primary mt-3" 
