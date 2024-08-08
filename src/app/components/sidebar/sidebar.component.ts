@@ -45,11 +45,11 @@ export class SidebarComponent implements OnInit {
     }
 
     onSubmit(form: any) {
-        console.log(this.publication)
+        //console.log(this.publication)
         this._publicationService.addPublication(this.publication).subscribe(
             response => {
                 this.status = 'success'
-                console.log(response)
+                //console.log(response)
                 this.msg = response.msg
 
                 //Obtenemos los datos del localstorage actual para obtener ul token
@@ -61,17 +61,20 @@ export class SidebarComponent implements OnInit {
                 datosPublication.publication = Number(datosPublication.publication)+1
                 localStorage.setItem('stats', JSON.stringify(datosPublication))
 
-                //Dice el victor que aqui tendria que ir la carga de la imagen
-                this._uploadService.makeFileRequest(this.url+'/publication/uploadfile/'+response.data.uid,this.filesToUpload,datosUser.token,'archivo')
-                .then((result:any) => {
-                    //datosUser.imagen = result.data
-                    //this.newImagen = result.data
-                    //volvemos a actualiza el localstorga
-                    //localStorage.setItem('data',JSON.stringify(datosUser))
-
-                    form.reset();
-                    this._router.navigate(['/timeline'])
-                })
+                //Verificamos si se ha cargado imagen para subirla de lo contrario no hacemos la peticion
+                if(this.filesToUpload.length){
+                    //Dice el victor que aqui tendria que ir la carga de la imagen
+                    this._uploadService.makeFileRequest(this.url+'/publication/uploadfile/'+response.data.uid,this.filesToUpload,datosUser.token,'archivo')
+                    .then((result:any) => {
+                        //datosUser.imagen = result.data
+                        //this.newImagen = result.data
+                        //volvemos a actualiza el localstorga
+                        //localStorage.setItem('data',JSON.stringify(datosUser))
+                    })
+                }
+                
+                form.reset();
+                this._router.navigate(['/timeline'])
 
             },
             error => {

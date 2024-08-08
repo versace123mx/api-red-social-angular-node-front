@@ -1,13 +1,15 @@
 <div class="container my-5 bg-light text-dark">
-    <div class="row">
+<div class="row">
         <div class="col-6">
             <div class="row my-4">
                 <div class="col-md-6">
                     <h1 class="h1-strong">{{title}}</h1>
                 </div>
+                <!--  
                 <div class="col-md-6 text-end">
                     <button class="btn btn-success" (click)="refresh()">Refresh Timeline</button>
                 </div>
+                -->
             </div>
         </div>
     </div>
@@ -71,7 +73,7 @@
                                         </div>
                                     </div>
 
-
+                                    <!--Fecha de las publicaciones-->
                                     <div>
                                         <p class="text-end fs-6 fw-lighter datePublication">{{ publication.create_at |
                                             dateFormat:'dddd, MMMM Do YYYY, h:mm:ss a' }}</p>
@@ -81,16 +83,16 @@
 
                                     <!--Borrar publicacion-->
                                     <div class="text-end" *ngIf="user.id == publication.user._id">
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#staticBackdrop">
+                                        <a type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                        href="#deletePublication_{{publication.uid}}">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
                                                 <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
                                             </svg>
                                             Borrar publicacion
-                                        </button>
+                                        </a>
 
                                         <!-- Modal Para Borrar Publicacion -->
-                                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+                                        <div class="modal fade" id="deletePublication_{{publication.uid}}" data-bs-backdrop="static"
                                             data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
                                             aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered">
@@ -107,7 +109,7 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                        <button type="button" class="btn btn-danger">
+                                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deletePublication(publication.uid)">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
                                                                 <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
                                                             </svg>

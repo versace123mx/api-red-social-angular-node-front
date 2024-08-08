@@ -29,11 +29,11 @@ export class PublicationService{
         return this._http.get(this.url+'/publication/show-publication-following?pagina='+page, {headers})
     }
 
-    deletePublication(){
+    deletePublication(id:string){
         let data = JSON.parse(localStorage.getItem('data') ?? '{}')
         let headers = new HttpHeaders().set('Content-Type','application/json')
                                         .set('x-token',data.token)
-        return this._http.get(this.url+'/publication/show-publication-following', {headers})
+        return this._http.delete(this.url+'/publication/delete-publication/'+id, {headers})
     }
 
     getPublicationsXUser(id='',page=1):Observable<any>{

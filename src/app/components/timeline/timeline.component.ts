@@ -106,4 +106,27 @@ export class TimelineComponent implements OnInit {
     refresh(){
         this.getPublications(1)
     }
+
+    deletePublication(id:string){
+        console.log("Publicacion eliminada",id)
+        this._publicationService.deletePublication(id).subscribe(
+            response => {
+
+                //Obtenemos los datos del localstorage actual
+                let datosPublication = JSON.parse(localStorage.getItem('stats') ?? '{}')
+                //realizamos la modificaciones pertinentes
+                datosPublication.publication = Number(datosPublication.publication)-1
+                localStorage.setItem('stats', JSON.stringify(datosPublication))
+
+                this.refresh();
+            },
+            error => {
+                let errorMessage = <any>error
+                if (errorMessage != null) {
+                    this.status = 'error'
+                    this.msg = error.error.msg
+                }
+            }
+        )
+    }
 }
