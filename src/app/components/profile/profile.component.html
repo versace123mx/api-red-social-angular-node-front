@@ -34,12 +34,20 @@
                                     @{{userProfile.nick}}
                                 </p>
                                 <div class="d-flex justify-content-start rounded-3 p-2 mb-2 bg-body-tertiary">
+
                                     <div>
                                         <p class="small text-muted mb-1 mx-1">
                                             Followin
                                         </p>
-                                        <p class="mb-0 text-center">{{followin}}</p>
+                                        <a [routerLink]="['/siguiendo',userProfile.uid]" class="text-decoration-none"
+                                            *ngIf="followin; else templateElse">
+                                            <p class="mb-0 text-center">{{followin}}</p>
+                                        </a>
+                                        <ng-template #templateElse>
+                                            <p class="mb-0 text-center">{{followin}}</p>
+                                        </ng-template>
                                     </div>
+
                                     <div class="px-3">
                                         <p class="small text-muted mb-1">
                                             Followers

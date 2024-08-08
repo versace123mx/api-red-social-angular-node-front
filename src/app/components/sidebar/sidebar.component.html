@@ -11,21 +11,27 @@
                             </div>
                             <div class="flex-grow-1 ms-3">
                                 <h5 class="mb-1 text-capitalize fw-bolder">
-                                    <a [routerLink]="['/profile', user.id]" class="text-decoration-none">{{user.name}} {{user.surname}}</a>
+                                    <a [routerLink]="['/profile', user.id]" class="text-decoration-none">{{user.name}}
+                                        {{user.surname}}</a>
                                 </h5>
                                 <p class="mb-2 pb-1">
                                     Nick: {{ user.nick }}
                                 </p>
                                 <div class="d-flex justify-content-start rounded-3 p-2 mb-2 bg-body-tertiary">
-                                    
-                                    <a [routerLink]="['/siguiendo',user.id]" class="text-decoration-none">
-                                        <div>
-                                            <p class="small text-muted mb-1 mx-1">
-                                                Followin
-                                            </p>
+
+
+                                    <div>
+                                        <p class="small text-muted mb-1 mx-1">
+                                            Followin
+                                        </p>
+                                        <a [routerLink]="['/siguiendo',user.id]" class="text-decoration-none"
+                                            *ngIf="stats.follow; else templateElse">
                                             <p class="mb-0 text-center">{{ stats.follow }}</p>
-                                        </div>
-                                    </a>
+                                        </a>
+                                        <ng-template #templateElse>
+                                            <p class="mb-0 text-center">{{ stats.follow }}</p>
+                                        </ng-template>
+                                    </div>
 
                                     <div class="px-3">
                                         <p class="small text-muted mb-1">
@@ -47,24 +53,26 @@
                                 {{msg}}
                             </div>
                             <div class="alert alert-danger" *ngIf="status=='error'">
-                                El registro no se ha podido Guardar 
+                                El registro no se ha podido Guardar
                             </div>
 
                             <form #newPubForm="ngForm" (ngSubmit)="onSubmit(newPubForm, $event);">
                                 <label for="exampleFormControlTextarea1" class="form-label">¿Que estas pensando?</label>
-                                <textarea class="form-control mb-3" name="text" 
-                                #text="ngModel" [(ngModel)]="publication.text" 
-                                id="exampleFormControlTextarea1" rows="3" required></textarea>
-                                <span *ngIf="!text.valid && text.touched" class="text-danger fw-bolder">El texto de la publicacion es obligatorio</span>
+                                <textarea class="form-control mb-3" name="text" #text="ngModel"
+                                    [(ngModel)]="publication.text" id="exampleFormControlTextarea1" rows="3"
+                                    required></textarea>
+                                <span *ngIf="!text.valid && text.touched" class="text-danger fw-bolder">El texto de la
+                                    publicacion es obligatorio</span>
                                 <div class="my-3">
                                     <label for="formFile" class="form-label">Sube una foto en tu post</label>
-                                    <input class="form-control" type="file" id="formFile" (change)="fileChangeEvent($event)">
+                                    <input class="form-control" type="file" id="formFile"
+                                        (change)="fileChangeEvent($event)">
                                 </div>
 
-                                <input type="submit" value="Enviar" class="btn btn-primary mt-3" 
-                                [disabled]="!newPubForm.form.valid" />
+                                <input type="submit" value="Enviar" class="btn btn-primary mt-3"
+                                    [disabled]="!newPubForm.form.valid" />
                             </form>
-                            
+
                         </div>
                     </div>
                 </div>
