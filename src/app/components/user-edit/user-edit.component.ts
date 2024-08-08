@@ -60,14 +60,17 @@ export class UserEditComponent implements OnInit{
                 this.status = response.status
                 //userEditForm.reset()
 
-                //Dice el victor que aqui tendria que ir la carga de la imagen
-                this._uploadService.makeFileRequest(this.url+'/update-image',this.filesToUpload,datosUser.token,'archivo')
-                .then((result:any) => {
-                    datosUser.imagen = result.data
-                    this.newImagen = result.data
-                    //volvemos a actualiza el localstorga
-                    localStorage.setItem('data',JSON.stringify(datosUser))
-                })
+                //Verificamos si se ha cargado imagen para subirla de lo contrario no hacemos la peticion
+                if(this.filesToUpload.length){
+                    //Dice el victor que aqui tendria que ir la carga de la imagen
+                    this._uploadService.makeFileRequest(this.url+'/update-image',this.filesToUpload,datosUser.token,'archivo')
+                    .then((result:any) => {
+                        datosUser.imagen = result.data
+                        this.newImagen = result.data
+                        //volvemos a actualiza el localstorga
+                        localStorage.setItem('data',JSON.stringify(datosUser))
+                    })
+                }
             },
             error: (error) => {
                 console.log(error);

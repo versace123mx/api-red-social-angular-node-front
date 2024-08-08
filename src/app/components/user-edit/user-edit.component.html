@@ -32,8 +32,33 @@
                 <input class="form-control" type="file" id="formFile" name="archivo" (change)="fileChangeEvent($event)">
             </p>
             <div *ngIf="newImagen" class="my-3">
-                <img src="{{url+'/mostrar-imagen-perfil-nameImage/'+newImagen}}" alt="" class="rounded-square" style="width: 100px;">
+                <a class="" data-bs-toggle="modal" href="#staticBackdrop">
+                    <img src="{{url+'/mostrar-imagen-perfil-nameImage/'+newImagen}}" alt="" class="rounded-square" style="width: 100px;">
+                </a>
             </div>
+
+            <!-- Modal Para mostrar Iamgen-->
+            <div class="modal fade" id="staticBackdrop"
+            data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <img src="{{url+'/mostrar-imagen-perfil-nameImage/'+newImagen}}"
+                            alt="Imagen perfil" class="img-fluid"
+                            style="width: 800px; border-radius: 10px;" />
+                    </div>
+                </div>
+            </div>
+            </div>
+
+
+
+
             <input type="submit" value="{{title}}" class="btn btn-success" [disabled]="!userEditForm.form.valid">
         </form>
     </div>
