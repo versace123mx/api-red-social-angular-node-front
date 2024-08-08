@@ -39,8 +39,8 @@
 
 
 <div class="pb-4">
-    <span *ngIf="total">
+    <span *ngIf="total && this.total > itemsPorPage">
         <button class="btn btn-primary mx-2" (click)="viewMore()" *ngIf="!noMore">Ver mas Publicaciones</button>
-        <button class="btn btn-success" (click)="refresh()">Refresh Publications</button>
+        <!--<button class="btn btn-success" (click)="refresh()">Refresh Publications</button>-->
     </span>
 </div>

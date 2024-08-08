@@ -17,7 +17,7 @@ import { GLOBAL } from "../../services/global";
 export class FollowingComponent implements OnInit{
 
     title:string
-    user:User
+    user:any
     page:number
     next_page:number
     prev_page:number
@@ -29,6 +29,9 @@ export class FollowingComponent implements OnInit{
     follows: Array<any>
     totalPage: Array<any>
     user_id:string
+    totalRegistros:number
+    totalRegistrosXPagina:number
+    msg: string
 
     constructor(
         private _route: ActivatedRoute,
@@ -36,7 +39,7 @@ export class FollowingComponent implements OnInit{
         private _userService: UserService,
         private __followService: FollowService
     ){
-        this.title = 'Gente',
+        this.title = 'Following',
         this.user = this._userService.getDataUSer()
         this.page = 0
         this.next_page = 0
@@ -49,10 +52,13 @@ export class FollowingComponent implements OnInit{
         this.follows = []
         this.totalPage = []
         this.user_id = ''
+        this.totalRegistros = 0
+        this.totalRegistrosXPagina = 0
+        this.msg = ''
     }
 
     ngOnInit() {
-        console.log('users.component ha sido cargado')
+        console.log('following.component ha sido cargado')
         this.actualPage()
     }
 
@@ -61,7 +67,8 @@ export class FollowingComponent implements OnInit{
         this._route.params.subscribe( params  => {
 
             this.page = +params['page']
-            
+            this.user_id = params['id']
+
             if(!this.page){
 
                 this.page = 1
@@ -83,11 +90,11 @@ export class FollowingComponent implements OnInit{
         })
     }
 
-    getFollows(userid:string,page=0){
+    getFollows(id:string,page=0){
 
-        this.__followService.getFollowing(userid,page).subscribe(
+        this.__followService.getFollowing(id,page).subscribe(
             response => {
-                console.log(response)
+                //console.log(response)
                 if(!response.data){
                     this.status = 'error'
                 }else{
@@ -97,22 +104,20 @@ export class FollowingComponent implements OnInit{
                     this.users = response.data //datos en un arreglo de objetos de todos los usuarios exceto el logueado
                     this.follows = response.follows//arreglo que tiene los id de los usuarios que ya sigo como usuario logueado
                     this.totalPage = Array.from({ length: this.total }, (_, i) => i + 1); // Genera un array para la paginacion numerada 1,2,3,4
-
-                    $("html,body").animate({
-                        scrollTop: 0
-                    })
+                    this.totalRegistros = response.totalRegistros //numero total de registros encontrados
+                    this.totalRegistrosXPagina = response.numRegistrosMostrarXPagina //nemero de registros a mostrar por pagina
 
                     if(page > this.total){
-                        this._router.navigate(['/gente',1])
+                        this._router.navigate(['/siguiendo',1])
                     }
                 }
             },
             error => {
-                let errorMessage = <any>error
-                console.log(errorMessage)
+                let errorMessage = error
 
                 if(errorMessage != null){
                     this.status = 'error'
+                    this.msg = error.error.msg
                 }
             }
 

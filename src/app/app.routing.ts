@@ -23,6 +23,7 @@ const appRoutes: Routes = [
     {path:'timeline', component:TimelineComponent},
     {path:'profile/:id', component:ProfileComponent},
     {path:'publications-user/:id', component:PublicationsComponent},
+    {path:'siguiendo/:id', component:FollowingComponent},
     {path:'siguiendo/:id/:page', component:FollowingComponent},
     {path:'**', component:HomeComponent},
 ]

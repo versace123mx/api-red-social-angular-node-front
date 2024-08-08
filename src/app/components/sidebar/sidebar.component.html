@@ -17,12 +17,16 @@
                                     Nick: {{ user.nick }}
                                 </p>
                                 <div class="d-flex justify-content-start rounded-3 p-2 mb-2 bg-body-tertiary">
-                                    <div>
-                                        <p class="small text-muted mb-1 mx-1">
-                                            Followin
-                                        </p>
-                                        <p class="mb-0 text-center">{{ stats.follow }}</p>
-                                    </div>
+                                    
+                                    <a [routerLink]="['/siguiendo',user.id]" class="text-decoration-none">
+                                        <div>
+                                            <p class="small text-muted mb-1 mx-1">
+                                                Followin
+                                            </p>
+                                            <p class="mb-0 text-center">{{ stats.follow }}</p>
+                                        </div>
+                                    </a>
+
                                     <div class="px-3">
                                         <p class="small text-muted mb-1">
                                             Followers
