@@ -10,6 +10,7 @@ import { UsersComponent } from './components/users/users.component';
 import { TimelineComponent } from './components/timeline/timeline.component'
 import { ProfileComponent } from './components/profile/profile.component'
 import { PublicationsComponent } from './components/publications/publications.component'
+import { FollowingComponent } from './components/following/following.component'
 
 const appRoutes: Routes = [
     {path:'', component:HomeComponent},
@@ -22,6 +23,7 @@ const appRoutes: Routes = [
     {path:'timeline', component:TimelineComponent},
     {path:'profile/:id', component:ProfileComponent},
     {path:'publications-user/:id', component:PublicationsComponent},
+    {path:'siguiendo/:id/:page', component:FollowingComponent},
     {path:'**', component:HomeComponent},
 ]
 

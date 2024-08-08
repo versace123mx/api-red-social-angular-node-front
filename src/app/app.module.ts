@@ -17,6 +17,9 @@ import { DateFormatPipe } from './date-format.pipe'
 import { ProfileComponent } from './components/profile/profile.component'
 import { PublicationsComponent } from './components/publications/publications.component'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { FollowingComponent } from './components/following/following.component'
 
 @NgModule({
   declarations: [
@@ -30,7 +33,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     TimelineComponent,
     DateFormatPipe,
     ProfileComponent,
-    PublicationsComponent
+    PublicationsComponent,
+    FollowingComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +42,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     routing,
     FormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    BrowserAnimationsModule, // requerido por ngx-toastr
+    ToastrModule.forRoot()   // ToastrModule añadido a la configuración de root
   ],
   providers: [
     appRoutingProviders
