@@ -44,7 +44,8 @@ export class SidebarComponent implements OnInit {
         this.stats = this._userService.getStats();
     }
 
-    onSubmit(form: any) {
+    //$event no se ocupa pero por ahora ahi lo dejo
+    onSubmit(form: any,$event:any) {
         //console.log(this.publication)
         this._publicationService.addPublication(this.publication).subscribe(
             response => {
@@ -66,6 +67,7 @@ export class SidebarComponent implements OnInit {
                     //Dice el victor que aqui tendria que ir la carga de la imagen
                     this._uploadService.makeFileRequest(this.url+'/publication/uploadfile/'+response.data.uid,this.filesToUpload,datosUser.token,'archivo')
                     .then((result:any) => {
+                        this.sended.emit()
                         //datosUser.imagen = result.data
                         //this.newImagen = result.data
                         //volvemos a actualiza el localstorga
@@ -73,8 +75,9 @@ export class SidebarComponent implements OnInit {
                     })
                 }
                 
-                form.reset();
                 this._router.navigate(['/timeline'])
+                this.sended.emit()
+                form.reset();
 
             },
             error => {
@@ -85,10 +88,7 @@ export class SidebarComponent implements OnInit {
         )
     }
 
-    @Output() sended = new EventEmitter();
-    sendPublication(){
-        this.sended.emit()
-    }
+    @Output() sended = new EventEmitter();    
 
     fileChangeEvent(fileInput:any){
         //console.log(fileInput.target.files[0])

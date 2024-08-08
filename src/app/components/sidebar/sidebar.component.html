@@ -46,7 +46,7 @@
                                 El registro no se ha podido Guardar 
                             </div>
 
-                            <form #newPubForm="ngForm" (ngSubmit)="onSubmit(newPubForm); sendPublication()">
+                            <form #newPubForm="ngForm" (ngSubmit)="onSubmit(newPubForm, $event);">
                                 <label for="exampleFormControlTextarea1" class="form-label">¿Que estas pensando?</label>
                                 <textarea class="form-control mb-3" name="text" 
                                 #text="ngModel" [(ngModel)]="publication.text" 
