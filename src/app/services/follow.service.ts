@@ -35,4 +35,11 @@ export class FollowService{
         return this._http.get(this.url+'/follow/followin/'+id+'?pagina='+page, {headers})
     }
 
+    getFollowed(id = '',page = 0):Observable<any>{
+        let data = JSON.parse(localStorage.getItem('data') ?? '{}')
+        let headers = new HttpHeaders().set('Content-Type','application/json')
+                                        .set('x-token',data.token)
+        return this._http.get(this.url+'/follow/followers/'+id+'?pagina='+page, {headers})
+    }
+
 }

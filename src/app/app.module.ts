@@ -20,6 +20,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { FollowingComponent } from './components/following/following.component'
+import { FollowedComponent } from './components/followed/followed.component'
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { FollowingComponent } from './components/following/following.component'
     DateFormatPipe,
     ProfileComponent,
     PublicationsComponent,
-    FollowingComponent
+    FollowingComponent,
+    FollowedComponent
   ],
   imports: [
     BrowserModule,

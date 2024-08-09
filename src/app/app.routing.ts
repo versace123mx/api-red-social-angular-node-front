@@ -11,6 +11,7 @@ import { TimelineComponent } from './components/timeline/timeline.component'
 import { ProfileComponent } from './components/profile/profile.component'
 import { PublicationsComponent } from './components/publications/publications.component'
 import { FollowingComponent } from './components/following/following.component'
+import { FollowedComponent } from './components/followed/followed.component'
 
 const appRoutes: Routes = [
     {path:'', component:HomeComponent},
@@ -25,6 +26,8 @@ const appRoutes: Routes = [
     {path:'publications-user/:id', component:PublicationsComponent},
     {path:'siguiendo/:id', component:FollowingComponent},
     {path:'siguiendo/:id/:page', component:FollowingComponent},
+    {path:'seguidores/:id', component:FollowedComponent},
+    {path:'seguidores/:id/:page', component:FollowedComponent},
     {path:'**', component:HomeComponent},
 ]
 

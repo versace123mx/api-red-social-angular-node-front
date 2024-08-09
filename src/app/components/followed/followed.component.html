@@ -1,6 +1,6 @@
 <div class="container my-5 bg-light text-dark">
     <div class="row">
-        <h1 class="h1-strong">{{title}} <span class="fs-5 fw-normal" *ngIf="total">{{username}} sigue a:</span></h1>
+        <h1 class="h1-strong">{{title}} <span class="fs-5 fw-normal" *ngIf="total">{{username}} lo sigue:</span></h1>
     </div>
 
     <div class="row">
@@ -17,19 +17,19 @@
                         <div class="d-flex">
                         
                             <div class="flex-shrink-0">
-                                <img src="{{url+'/mostrar-imagen-perfil-nameImage/'+user.followed.imagen}}"
+                                <img src="{{url+'/mostrar-imagen-perfil-nameImage/'+user.user.imagen}}"
                                 class="img-fluid rounded-circle"
                                 style="width: 100px;" alt="Avatar" />
                                 
                             </div>
                             <div class="flex-grow-1 ms-3">
                                 <h5 class="mb-1">
-                                    <a [routerLink]="['/profile', user.followed._id]" class="fw-bolder text-danger text-decoration-none fs-5 mx-3 card-title text-capitalize">{{
-                                        user.followed.name }} {{ user.followed.surname }}</a>
+                                    <a [routerLink]="['/profile', user.user._id]" class="fw-bolder text-danger text-decoration-none fs-5 mx-3 card-title text-capitalize">{{
+                                        user.user.name }} {{ user.user.surname }}</a>
                                 </h5>
-                                <p class="card-text mx-3 fw-bolder">Nick: {{ user.followed.nick }}</p>
-                                <span *ngIf="(follows.indexOf(user.followed._id) < 0  || userIdRegistrado != user_id) && user.followed._id != this.userIdRegistrado ">
-                                    <button class="btn btn-warning mx-3" (click)="followUser(user.followed._id)">
+                                <p class="card-text mx-3 fw-bolder">Nick: {{ user.user.nick }}</p>
+                                <span *ngIf="(follows.indexOf(user.user._id) < 0 || userIdRegistrado != user_id)  && user.user._id != this.userIdRegistrado">
+                                    <button class="btn btn-warning mx-3" (click)="followUser(user.user._id)">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                             class="bi bi-person-fill-add" viewBox="0 0 16 16">
                                             <path
@@ -40,8 +40,8 @@
                                         Follow
                                     </button>
                                 </span>
-                                <span *ngIf="(follows.indexOf(user.followed._id) >= 0  && userIdRegistrado == user_id) && user.followed._id != userIdRegistrado">
-                                    <button href="#" class="btn btn-danger mx-3" (click)="unfollowUser(user.followed._id)">
+                                <span *ngIf="(follows.indexOf(user.user._id) >= 0 && userIdRegistrado == user_id) && user.user._id != this.userIdRegistrado">
+                                    <button href="#" class="btn btn-danger mx-3" (click)="unfollowUser(user.user._id)">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                             class="bi bi-person-fill-dash" viewBox="0 0 16 16">
                                             <path
@@ -70,12 +70,12 @@
         <nav aria-label="Page navigation example">
             <ul class="pagination">
                 <li class="page-item" *ngIf="page > 1"><a class="page-link"
-                        [routerLink]="['/siguiendo',user_id, prev_page]">Previous</a></li>
+                        [routerLink]="['/seguidores',user_id, prev_page]">Previous</a></li>
                 <li class="page-item" *ngFor="let idpagina of totalPage">
-                    <a *ngIf="totalRegistros > totalRegistrosXPagina" class="page-link" [routerLink]="['/siguiendo',user_id, idpagina]" [routerLinkActive]="['active']">{{idpagina}}</a>
+                    <a *ngIf="totalRegistros > totalRegistrosXPagina" class="page-link" [routerLink]="['/seguidores',user_id, idpagina]" [routerLinkActive]="['active']">{{idpagina}}</a>
                 </li>
                 <li class="page-item" *ngIf="pages != page"><a class="page-link"
-                        [routerLink]="['/siguiendo',user_id, next_page]">Next</a></li>
+                        [routerLink]="['/seguidores',user_id, next_page]">Next</a></li>
             </ul>
         </nav>
     </div>

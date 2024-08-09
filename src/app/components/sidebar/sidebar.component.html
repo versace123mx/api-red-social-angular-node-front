@@ -29,7 +29,7 @@
                                             <p class="mb-0 text-center">{{ stats.follow }}</p>
                                         </a>
                                         <ng-template #templateElse>
-                                            <p class="mb-0 text-center">{{ stats.follow }}</p>
+                                            <p class="mb-0 text-center">0</p>
                                         </ng-template>
                                     </div>
 
@@ -37,7 +37,13 @@
                                         <p class="small text-muted mb-1">
                                             Followers
                                         </p>
-                                        <p class="mb-0 text-center">{{ stats.followme }}</p>
+                                        <a [routerLink]="['/seguidores',user.id]" class="text-decoration-none"
+                                            *ngIf="stats.followme; else templateElse">
+                                            <p class="mb-0 text-center">{{ stats.followme }}</p>
+                                        </a>
+                                        <ng-template #templateElse>
+                                            <p class="mb-0 text-center">0</p>
+                                        </ng-template>
                                     </div>
                                     <div>
                                         <p class="small text-muted mb-1">

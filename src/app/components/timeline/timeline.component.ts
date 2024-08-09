@@ -27,6 +27,8 @@ export class TimelineComponent implements OnInit {
     noMore:boolean;
     public stats: { follow: number, followme: number, publication: number };
     public publications: any
+    totalRegistros:number
+    totalRegistrosXPagina:number
 
 
     constructor(
@@ -47,6 +49,8 @@ export class TimelineComponent implements OnInit {
         this.msg = ''
         this.itemsPorPage = 0
         this.noMore = false;
+        this.totalRegistros = 0
+        this.totalRegistrosXPagina = 0
     }
 
     ngOnInit() {
@@ -71,7 +75,8 @@ export class TimelineComponent implements OnInit {
                     this.total = response.totalRegistros //total de registros entregado desde el api
                     this.pages = response.totalPaginas //total de paginas del paginado entregado desde el api
                     this.itemsPorPage = response.numRegistrosMostrarXPagina // numero de registros entregados por pagina
-
+                    this.totalRegistros = response.totalRegistros //numero total de registros encontrados
+                    this.totalRegistrosXPagina = response.numRegistrosMostrarXPagina //nemero de registros a mostrar por pagina
                     if (!adding) {
                         this.publications = response.data//datos en un arreglo de objetos de todos los usuarios exceto el logueado
                     } else {

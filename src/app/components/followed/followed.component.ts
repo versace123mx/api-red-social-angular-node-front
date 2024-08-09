@@ -9,12 +9,12 @@ import { GLOBAL } from "../../services/global";
 
 
 @Component({
-    selector:'following',
-    templateUrl:'./following.component.html',
+    selector:'followed',
+    templateUrl:'./followed.component.html',
     providers:[UserService, FollowService]
     
 })
-export class FollowingComponent implements OnInit{
+export class FollowedComponent implements OnInit{
 
     title:string
     user:any
@@ -41,7 +41,7 @@ export class FollowingComponent implements OnInit{
         private _userService: UserService,
         private __followService: FollowService
     ){
-        this.title = 'Following',
+        this.title = 'Followed',
         this.user = this._userService.getDataUSer()
         this.page = 0
         this.next_page = 0
@@ -88,17 +88,17 @@ export class FollowingComponent implements OnInit{
             }
 
             //Devolver listado usuarios
-            this.getFollows(this.user_id,this.page)
+            this.getFollowed(this.user_id,this.page)
 
 
         })
     }
 
-    getFollows(id:string,page=0){
+    getFollowed(id:string,page=0){
 
-        this.__followService.getFollowing(id,page).subscribe(
+        this.__followService.getFollowed(id,page).subscribe(
             response => {
-                //console.log(response)
+                console.log(response)
                 if(!response.data){
                     this.status = 'error'
                 }else{
