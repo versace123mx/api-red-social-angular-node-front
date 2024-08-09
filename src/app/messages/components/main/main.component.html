@@ -1,0 +1,26 @@
+<div class="container my-5 bg-light text-dark">
+    <div class="row">
+        <div class="col-md-6">
+            <h1 class="h1-strong">{{title}}</h1>
+
+            <ul>
+                <li [routerLinkActive]="['active']">
+                    <a [routerLink]="['enviar']">Enviar Mesaje</a>
+                </li>
+                <li [routerLinkActive]="['active']">
+                    <a [routerLink]="['recibidos']">Mesajes Recibidos</a>
+                </li>
+                <li [routerLinkActive]="['active']">
+                    <a [routerLink]="['enviados']">Mesajes Enviados</a>
+                </li>
+                <li [routerLinkActive]="['active']">
+                    <a [routerLink]="['/']">Informacion</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+

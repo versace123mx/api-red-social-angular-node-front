@@ -4,6 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { routing, appRoutingProviders } from './app.routing'
 
+//Modulo custom
+import { MessagesModule } from './messages/messages.module';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component'
@@ -46,7 +49,8 @@ import { FollowedComponent } from './components/followed/followed.component'
     HttpClientModule,
     NgbModule,
     BrowserAnimationsModule, // requerido por ngx-toastr
-    ToastrModule.forRoot()   // ToastrModule añadido a la configuración de root
+    ToastrModule.forRoot(),   // ToastrModule añadido a la configuración de root
+    MessagesModule 
   ],
   providers: [
     appRoutingProviders
