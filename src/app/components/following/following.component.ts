@@ -27,6 +27,7 @@ export class FollowingComponent implements OnInit{
     users:Array<any>
     url: string
     follows: Array<any>
+    followers: Array<any>
     totalPage: Array<any>
     user_id:string
     totalRegistros:number
@@ -52,6 +53,7 @@ export class FollowingComponent implements OnInit{
         this.users = []
         this.url = GLOBAL.url
         this.follows = []
+        this.followers = []
         this.totalPage = []
         this.user_id = ''
         this.totalRegistros = 0
@@ -107,6 +109,7 @@ export class FollowingComponent implements OnInit{
                     this.pages = response.totalPaginas //total de paginas del paginado entregado desde el api
                     this.users = response.data //datos en un arreglo de objetos de todos los usuarios exceto el logueado
                     this.follows = response.follows//arreglo que tiene los id de los usuarios que ya sigo como usuario logueado
+                    this.followers = response.followers
                     this.totalPage = Array.from({ length: this.total }, (_, i) => i + 1); // Genera un array para la paginacion numerada 1,2,3,4
                     this.totalRegistros = response.totalRegistros //numero total de registros encontrados
                     this.totalRegistrosXPagina = response.numRegistrosMostrarXPagina //nemero de registros a mostrar por pagina

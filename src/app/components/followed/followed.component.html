@@ -28,7 +28,7 @@
                                         user.user.name }} {{ user.user.surname }}</a>
                                 </h5>
                                 <p class="card-text mx-3 fw-bolder">Nick: {{ user.user.nick }}</p>
-                                <span *ngIf="(follows.indexOf(user.user._id) < 0 || userIdRegistrado != user_id)  && user.user._id != this.userIdRegistrado">
+                                <span *ngIf="(followers.indexOf(user.user._id) < 0)  && user.user._id != this.userIdRegistrado">
                                     <button class="btn btn-warning mx-3" (click)="followUser(user.user._id)">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                             class="bi bi-person-fill-add" viewBox="0 0 16 16">
@@ -40,7 +40,7 @@
                                         Follow
                                     </button>
                                 </span>
-                                <span *ngIf="(follows.indexOf(user.user._id) >= 0 && userIdRegistrado == user_id) && user.user._id != this.userIdRegistrado">
+                                <span *ngIf="(followers.indexOf(user.user._id) >= 0) && user.user._id != this.userIdRegistrado">
                                     <button href="#" class="btn btn-danger mx-3" (click)="unfollowUser(user.user._id)">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                             class="bi bi-person-fill-dash" viewBox="0 0 16 16">
