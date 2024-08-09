@@ -32,6 +32,8 @@ export class FollowingComponent implements OnInit{
     totalRegistros:number
     totalRegistrosXPagina:number
     msg: string
+    userIdRegistrado:string
+    username:string
 
     constructor(
         private _route: ActivatedRoute,
@@ -55,6 +57,8 @@ export class FollowingComponent implements OnInit{
         this.totalRegistros = 0
         this.totalRegistrosXPagina = 0
         this.msg = ''
+        this.userIdRegistrado = ''
+        this.username = ''
     }
 
     ngOnInit() {
@@ -106,6 +110,8 @@ export class FollowingComponent implements OnInit{
                     this.totalPage = Array.from({ length: this.total }, (_, i) => i + 1); // Genera un array para la paginacion numerada 1,2,3,4
                     this.totalRegistros = response.totalRegistros //numero total de registros encontrados
                     this.totalRegistrosXPagina = response.numRegistrosMostrarXPagina //nemero de registros a mostrar por pagina
+                    this.userIdRegistrado = this.user.id
+                    this.username = response.nameUser[0].name + ' ' + response.nameUser[0].surname
 
                     if(page > this.total){
                         this._router.navigate(['/siguiendo',1])
