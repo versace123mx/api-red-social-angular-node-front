@@ -96,7 +96,7 @@ export class SendedComponent implements OnInit{
     sendMessagesList(page=0){
         this._messageService.listSendMessage(page).subscribe({
             next: (response) =>{
-                console.log(response)
+                //console.log(response)
                 if(!response.data){
                     this.status = 'error'
                 }else{

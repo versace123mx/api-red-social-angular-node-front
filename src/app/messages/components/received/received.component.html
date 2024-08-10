@@ -1,1 +1,67 @@
-<h1>{{title}}</h1>
+<div class="container my-5 bg-light text-dark">
+    <div class="row">
+        <h1 class="h1-strong">{{title}}</h1>
+    </div>
+
+    <div class="row">
+        <!--Componente de la imagen de los usuarios-->
+
+        <div *ngIf="!total">
+            {{msg}}
+        </div> 
+
+        <div class="my-3 col-md-12">
+            <div class="col-12 my-3" *ngFor="let user of users"><!--Aqui se recorre y contruyen los perfiles-->
+                <div class="card p-4" style="border-radius: 15px;">
+                    <div class="card-body">
+                        <div class="d-flex">
+                        
+                            <div class="flex-shrink-0">
+                                <img src="{{url+'/mostrar-imagen-perfil-nameImage/'+user.emmiter.imagen}}"
+                                class="img-fluid rounded-circle"
+                                style="width: 100px;" alt="Avatar" />
+                                
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <p class="mb-1 mx-3">
+                                    <span class="fs-6">De:</span>
+                                    <a [routerLink]="['/profile', user.emmiter._id]" class="fw-bolder text-danger text-decoration-none fs-5 mx-3 card-title text-capitalize">
+                                        {{user.emmiter.name }} {{ user.emmiter.surname }}
+                                    </a>
+                                </p>
+                                <p class="card-text mx-3 fw-bolder text-start"><span class="fs-6 fw-normal text-start">Nick: </span> {{ user.emmiter.nick }}</p>
+                                <p class="card-text mx-3 fw-bolder"><span class="fs-6 fw-normal">Mensaje: </span> {{ user.text }}</p>
+                                
+                                <!--
+                                <div>
+                                    <p class="text-end fs-6 fw-lighter datePublication">{{ user.create_at |
+                                        dateFormat:'dddd, MMMM Do YYYY, h:mm:ss a' }}</p>
+                                    <p class="text-end fs-6 fw-lighter datePublication">{{ user.create_at |
+                                        dateFormat:'':true }}</p>
+                                </div>
+                                -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!--Fin de construccion de los perfiles-->
+        </div>
+    
+        
+    </div>
+
+    <!--Paginacion-->
+    <div class="row text-center" *ngIf="total">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item" *ngIf="page > 1"><a class="page-link"
+                        [routerLink]="['/mensajes/recibidos', prev_page]">Previous</a></li>
+                <li class="page-item" *ngFor="let idpagina of totalPage">
+                    <a *ngIf="totalRegistros > totalRegistrosXPagina" class="page-link" [routerLink]="['/mensajes/recibidos',idpagina]" [routerLinkActive]="['active']">{{idpagina}}</a>
+                </li>
+                <li class="page-item" *ngIf="pages != page"><a class="page-link"
+                        [routerLink]="['/mensajes/recibidos', next_page]">Next</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
