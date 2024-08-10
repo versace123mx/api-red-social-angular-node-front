@@ -1,2 +1,30 @@
 <div>{{title}}</div>
 <!--Formulario de envio-->
+<div class="alert alert-success" *ngIf="status=='success'">
+    Mensaje enviado correcta.
+</div>
+<div class="alert alert-danger" *ngIf="status=='error'">
+    {{msg}}
+</div>
+
+<form #formAdd="ngForm" (ngSubmit)="onSubmit(formAdd)">
+    <div class="mb-3">
+        <label for="" class="form-label">Para: </label>
+        <select *ngIf="follows" name="receiver" #receiver="ngModel" [(ngModel)]="message.receiver">
+            <option *ngFor="let follow of follows" value="{{follow.user._id}}">
+                {{follow.user.name}} {{follow.user.surname}}: @{{follow.user.nick}}
+            </option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Mensaje</label>
+        <textarea 
+            class="form-control" 
+            rows="3" 
+            name="text" #text="ngModel" [(ngModel)]="message.text" required></textarea>
+            <span *ngIf="!text.valid && text.touched" class="btn btn-outline-danger">
+                El Mensaje es obligatorio
+            </span>
+    </div>
+    <input type="submit" class="btn btn-primary" value="{{title}}" [disabled]="!formAdd.form.valid">
+</form>

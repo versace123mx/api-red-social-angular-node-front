@@ -42,4 +42,12 @@ export class FollowService{
         return this._http.get(this.url+'/follow/followers/'+id+'?pagina='+page, {headers})
     }
 
+    //Listado para Obtener los seguidores del usuario logueado
+    getFollowersList():Observable<any>{
+        let data = JSON.parse(localStorage.getItem('data') ?? '{}')
+        let headers = new HttpHeaders().set('Content-Type','application/json')
+                                        .set('x-token',data.token)
+        return this._http.get(this.url+'/follow/followersList', {headers})
+    }
+
 }

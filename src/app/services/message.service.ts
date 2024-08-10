@@ -14,7 +14,7 @@ export class MessageService{
     }
 
     //Enviar Mensaje
-    addMessage(message=''):Observable<any>{
+    addMessage(message:any):Observable<any>{
         let params = JSON.stringify(message)
         let data = JSON.parse(localStorage.getItem('data') ?? '{}')
         let headers = new HttpHeaders().set('Content-Type','application/json')
