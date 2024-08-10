@@ -11,6 +11,10 @@ import { AddComponent } from './components/add/add.component';
 import { ReceivedComponent } from './components/received/received.component';
 import { SendedComponent } from './components/sended/sended.component';
 
+//Servicios
+import { UserService } from '../services/user.service';
+import { UserGuard } from '../services/user.guard';
+
 @NgModule({
     declarations: [
         MainComponent,
@@ -24,7 +28,8 @@ import { SendedComponent } from './components/sended/sended.component';
         MensagesRoutingModule
     ],
     providers: [
-        
+        UserService,
+        UserGuard
     ],
     exports:[
         MainComponent,
