@@ -30,8 +30,8 @@ export class MessageService{
         return this._http.get(this.url+'/message/showMessageRecived?pagina='+page, {headers})
     } 
 
-    //Listar los mensajes recividos
-    listSendMessage(page=1):Observable<any>{
+    //Listar los mensajes enviados
+    listSendMessage(page=0):Observable<any>{
         let data = JSON.parse(localStorage.getItem('data') ?? '{}')
         let headers = new HttpHeaders().set('Content-Type','application/json')
                                         .set('x-token',data.token)
