@@ -82,7 +82,6 @@ export class PublicationsComponent implements OnInit {
                         })
                     }
                 }
-                console.log(this.publications,'Publicaciones xxxxxx')
             },
             error => {
                 let errorMessage = <any>error

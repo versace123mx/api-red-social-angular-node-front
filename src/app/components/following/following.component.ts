@@ -168,6 +168,7 @@ export class FollowingComponent implements OnInit{
                 //eliminar del arreglo de follows
                 const siguiendo = this.follows.filter(e => e != idUserUnFollow);
                 this.follows = siguiendo
+                this.refresh()
             },
             error => {
                 console.log(error)
@@ -175,6 +176,10 @@ export class FollowingComponent implements OnInit{
             }
 
         )
+    }
+
+    refresh(){
+        this.actualPage()
     }
 
 }
