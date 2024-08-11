@@ -6,6 +6,7 @@ import { routing, appRoutingProviders } from './app.routing'
 
 //Modulo custom
 import { MessagesModule } from './messages/messages.module';
+import { SharedModule } from './shared/share.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,7 +17,6 @@ import { UserEditComponent } from './components/user-edit/user-edit.component'
 import { UsersComponent } from './components/users/users.component'; 
 import { SidebarComponent } from './components/sidebar/sidebar.component'
 import { TimelineComponent } from './components/timeline/timeline.component'
-import { DateFormatPipe } from './date-format.pipe'
 import { ProfileComponent } from './components/profile/profile.component'
 import { PublicationsComponent } from './components/publications/publications.component'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -40,7 +40,6 @@ import { UserGuard } from './services/user.guard';
     UsersComponent,
     SidebarComponent,
     TimelineComponent,
-    DateFormatPipe,
     ProfileComponent,
     PublicationsComponent,
     FollowingComponent,
@@ -55,7 +54,8 @@ import { UserGuard } from './services/user.guard';
     NgbModule,
     BrowserAnimationsModule, // requerido por ngx-toastr
     ToastrModule.forRoot(),   // ToastrModule añadido a la configuración de root
-    MessagesModule 
+    MessagesModule,
+    SharedModule 
   ],
   providers: [
     appRoutingProviders,

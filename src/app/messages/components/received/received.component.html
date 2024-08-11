@@ -32,14 +32,14 @@
                                 <p class="card-text mx-3 fw-bolder text-start"><span class="fs-6 fw-normal text-start">Nick: </span> {{ user.emmiter.nick }}</p>
                                 <p class="card-text mx-3 fw-bolder"><span class="fs-6 fw-normal">Mensaje: </span> {{ user.text }}</p>
                                 
-                                <!--
+                                <!--Muestra fecha-->
                                 <div>
                                     <p class="text-end fs-6 fw-lighter datePublication">{{ user.create_at |
                                         dateFormat:'dddd, MMMM Do YYYY, h:mm:ss a' }}</p>
                                     <p class="text-end fs-6 fw-lighter datePublication">{{ user.create_at |
                                         dateFormat:'':true }}</p>
                                 </div>
-                                -->
+                                
                             </div>
                         </div>
                     </div>

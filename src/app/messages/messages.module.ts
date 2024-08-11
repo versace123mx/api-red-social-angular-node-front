@@ -5,6 +5,9 @@ import { FormsModule } from '@angular/forms';
 //Rutas
 import { MensagesRoutingModule } from './messages.routing';
 
+//pipe compartido global
+import { SharedModule } from '../shared/share.module';
+
 //Componentes
 import { MainComponent } from './components/main/main.component';
 import { AddComponent } from './components/add/add.component';
@@ -25,7 +28,8 @@ import { UserGuard } from '../services/user.guard';
     imports: [
         CommonModule,
         FormsModule,
-        MensagesRoutingModule
+        MensagesRoutingModule,
+        SharedModule
     ],
     providers: [
         UserService,
