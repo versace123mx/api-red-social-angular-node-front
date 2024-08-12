@@ -142,10 +142,16 @@ export class ProfileComponent implements OnInit{
             response => {
                 //Obtenemos los datos del localstorage actual
                 let datosUser = JSON.parse(localStorage.getItem('statsUserReview') ?? '{}')
-                //realizamos la modificaciones pertinentes
-                datosUser.followme = Number(datosUser.followme)+1
-                localStorage.setItem('statsUserReview',JSON.stringify(datosUser))
-
+                
+                if( !Object.keys(datosUser).length ){
+                    localStorage.setItem('statsUserReview',JSON.stringify({followme:1}))
+                }else{
+                    datosUser.followme = Number(datosUser.followme)+1
+                    localStorage.setItem('statsUserReview',JSON.stringify(datosUser))
+                }
+                
+                
+                //realizamos la modificaciones pertinentes y agregamos al arrar de follow el nuevo id del usuarioq ue se esta siguiendo
                 datosUser = JSON.parse(localStorage.getItem('statsUserReview') ?? '{}')
                 this.followers = datosUser.followme
                 this.follows.push(idUserSeguir)
