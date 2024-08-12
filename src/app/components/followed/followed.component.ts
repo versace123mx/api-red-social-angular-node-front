@@ -117,7 +117,7 @@ export class FollowedComponent implements OnInit{
                     this.username = response.nameUser[0].name + ' ' + response.nameUser[0].surname
                     //console.log(this.users)
                     //console.log(this.followers)
-                    console.log(response)
+                    //console.log(response)
                     if(page > this.total){
                         this._router.navigate(['/siguiendo',1])
                     }
